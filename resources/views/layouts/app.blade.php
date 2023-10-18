@@ -36,12 +36,13 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
 
-    <!-- Our style -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Our style -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
 
 </head>
 
