@@ -1,0 +1,25 @@
+* {
+    scroll-behavior: smooth;
+    font-family: "Figtree", sans-serif;
+}
+
+/* FORM CONTROL FOCUS */
+.form-control:focus {
+    border-color: rgba(241, 93, 75, 0.75);
+    box-shadow: 0 0 0 0.2rem rgba(241, 93, 75, 0.5);
+}
+
+.btn-outline-kraf {
+    border-color: rgba(241, 93, 75, 0.75);
+    color: #f15d4b;
+}
+.btn-outline-kraf:hover {
+    border-color: rgba(241, 93, 75, 0.75);
+    box-shadow: 0 0 0 0.2rem rgba(241, 93, 75, 0.25);
+    background-color: #f15d4b;
+    color: white;
+}
+
+/* input {
+    background-color: #f15d4b !important;
+} */
