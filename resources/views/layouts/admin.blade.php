@@ -45,7 +45,7 @@
     @stack('css')
 </head>
 
-<body class="hold-transition sidebar-mini layout-navbar-fixed">
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed">
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -73,7 +73,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                         <!-- User image -->
-                        <li class="user-header bg-best">
+                        <li class="user-header">
                             <img src="{{ asset('assets/img/default.png') }}" class="img-circle elevation-2"
                                 alt="User Image">
                             <p> {{ Auth::user()->name }}<small>Test</small></p>
@@ -95,8 +95,8 @@
                         </li> --}}
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
-                            <a class="btn btn-danger btn-flat float-right" href="{{ route('logout') }}"
+                            <a href="{{ route('profile.edit') }}" class="btn btn-default">Profile</a>
+                            <a class="btn btn-danger float-right" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
