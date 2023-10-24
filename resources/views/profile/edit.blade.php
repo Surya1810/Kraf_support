@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <p class="m-0"><strong>Profile Information</strong></p>
                                         <small>Update your accounts profile information and email address.</small><br>
                                         <label class="mt-4 mb-0 form-label col-form-label-sm" for="name">Name</label>
@@ -51,7 +51,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <p class="m-0"><strong>Update Password</strong></p>
                                         <small>Ensure your account is using a long, random password to stay
                                             secure.</small><br>
@@ -82,7 +82,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="col-6">
+                                    <div class="col-lg-6">
                                         <p class="m-0"><strong>Delete Account</strong></p>
                                         <small>Once your account is deleted, all of its resources and data will be
                                             permanently deleted.</small><br>

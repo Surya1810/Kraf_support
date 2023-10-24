@@ -29941,7 +29941,7 @@ body.text-sm .input-group-text {
     color: #1f2d3d;
 }
 .card-orange.card-outline {
-    border-top: 3px solid #fd7e14;
+    border-top: 3px solid #f15d4b;
 }
 .card-orange.card-outline-tabs > .card-header a:hover {
     border-top: 3px solid #dee2e6;
@@ -40202,12 +40202,12 @@ select.form-control-sm
 .select2-orange
     + .select2-container--default.select2-container--open
     .select2-selection--single {
-    border-color: #fec392;
+    border-color: #f15d4b;
 }
 .select2-orange
     + .select2-container--default.select2-container--focus
     .select2-selection--single {
-    border-color: #fec392;
+    border-color: #f15d4b;
 }
 .select2-container--default
     .select2-orange
@@ -40231,7 +40231,7 @@ select.form-control-sm
 .select2-orange
     .select2-container--default.select2-dropdown
     .select2-search__field:focus {
-    border: 1px solid #fec392;
+    border: 1px solid #f15d4b;
 }
 .select2-container--default
     .select2-orange
@@ -40239,7 +40239,7 @@ select.form-control-sm
 .select2-orange
     .select2-container--default
     .select2-results__option--highlighted {
-    background-color: #fd7e14;
+    background-color: #f15d4b;
     color: #1f2d3d;
 }
 .select2-container--default
@@ -40254,12 +40254,12 @@ select.form-control-sm
 .select2-orange
     .select2-container--default
     .select2-results__option--highlighted[aria-selected]:hover {
-    background-color: #fd7605;
+    background-color: #f15d4b;
     color: #fff;
 }
 .select2-container--default .select2-orange .select2-selection--multiple:focus,
 .select2-orange .select2-container--default .select2-selection--multiple:focus {
-    border-color: #fec392;
+    border-color: #f15d4b;
 }
 .select2-container--default
     .select2-orange
@@ -40269,9 +40269,9 @@ select.form-control-sm
     .select2-container--default
     .select2-selection--multiple
     .select2-selection__choice {
-    background-color: #fd7e14;
+    background-color: #f15d4b;
     border-color: #f57102;
-    color: #1f2d3d;
+    color: #fff;
 }
 .select2-container--default
     .select2-orange
@@ -40299,7 +40299,7 @@ select.form-control-sm
 .select2-orange
     .select2-container--default.select2-container--focus
     .select2-selection--multiple {
-    border-color: #fec392;
+    border-color: #f15d4b;
 }
 .select2-yellow
     + .select2-container--default.select2-container--open
@@ -43650,7 +43650,7 @@ select.form-control-sm
     .dark-mode
     .select2-orange.select2-container--focus
     .select2-selection--multiple {
-    border-color: #fec392;
+    border-color: #f15d4b;
 }
 .dark-mode
     .select2-yellow

@@ -3,6 +3,10 @@
     font-family: "Figtree", sans-serif;
 }
 
+.rounded-kraf {
+    border-radius: 20px;
+}
+
 /* FORM CONTROL FOCUS */
 .form-control:focus {
     border-color: rgba(241, 93, 75, 0.75);
@@ -18,6 +22,16 @@
     box-shadow: 0 0 0 0.2rem rgba(241, 93, 75, 0.25);
     background-color: #f15d4b;
     color: white;
+}
+.btn-kraf {
+    border-color: rgba(241, 93, 75, 0.75);
+    background-color: rgba(241, 93, 75, 1);
+    color: #fff;
+}
+.btn-kraf:hover {
+    border-color: rgba(241, 93, 75, 0.75);
+    background-color: rgba(241, 93, 75, 0.75);
+    color: #fff;
 }
 
 /* Sidebar */

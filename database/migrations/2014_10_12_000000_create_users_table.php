@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('avatar')->default('default.png')->nullable();
+            $table->string('avatar')->default('profile.jpg')->nullable();
             $table->string('sign')->nullable();
             $table->integer('level');
             $table->boolean('is_active')->default(true);

@@ -37,6 +37,10 @@
     <link rel="stylesheet" href="{{ asset('assets/FontAwesome/6.2.1/css/all.min.css') }}">
     <!-- Sweetalert2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('assets/adminLTE/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/adminLTE/dist/css/adminlte.min.css') }}">
     <!-- Our style -->
@@ -56,17 +60,17 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                {{-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
-                </li>
+                </li> --}}
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('assets/img/default.png') }}" class="user-image img-circle elevation-2"
-                            alt="User Image">
+                        <img src="{{ asset('assets/img/profile/' . Auth::user()->avatar) }}"
+                            class="user-image img-circle elevation-2" alt="User Image">
                         <span class="d-none d-md-inline">
                             {{ Auth::user()->name }}
                         </span>
@@ -74,8 +78,8 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="{{ asset('assets/img/default.png') }}" class="img-circle elevation-2"
-                                alt="User Image">
+                            <img src="{{ asset('assets/img/profile/' . Auth::user()->avatar) }}"
+                                class="img-circle elevation-2" alt="User Image">
                             <p> {{ Auth::user()->name }}<small>Test</small></p>
                         </li>
                         <!-- Menu Body -->
@@ -204,7 +208,7 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-orange elevation-4">
+        <aside class="main-sidebar  main-sidebar-custom sidebar-dark-orange elevation-4">
             <!-- Brand Logo -->
             <a href="{{ route('dashboard') }}" class="brand-link logo-switch">
                 <img src="{{ asset('assets/logo/kraf-ico.png') }}" alt="Kraf_logo"
@@ -215,46 +219,105 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-3">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-child-indent nav-collapse-hide-child"
                         data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
-                                    {{-- <span class="right badge badge-danger">New</span> --}}
+                                </p>
+                            </a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-house"></i>
+                                <p>
+                                    Home
                                 </p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-header">MENU</li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fa-solid fa-id-card"></i>
                                 <p>
-                                    Inventory
+                                    Employee
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-regular fa-paste"></i>
+                                <p>
+                                    Transaction
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-boxes-packing"></i>
+                                <p>
+                                    Product
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route }}" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Active Page</p>
+                                        <p>Catalog</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Inactive Page</p>
+                                        <p>Reports</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inventory</p>
                                     </a>
                                 </li>
                             </ul>
-                        </li> --}}
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('project.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clipboard-list"></i>
+                                <p>
+                                    Project
+                                </p>
+                            </a>
+                        </li>
+                        <hr>
+                        <li class="nav-header">MENU</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-gear"></i>
+                                <p>
+                                    Settings
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+                                <p>
+                                    Log out
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
+            </div>
+            <div class="sidebar-custom">
+                <a href="#" class="btn btn-link"><i class="fas fa-cogs"></i></a>
+                <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a>
             </div>
             <!-- /.sidebar -->
         </aside>
@@ -284,6 +347,8 @@
     <script src="{{ asset('assets/adminLTE/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('assets/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('assets/adminLTE/plugins/select2/js/select2.full.min.js') }}"></script>
 
     @stack('scripts')
 
