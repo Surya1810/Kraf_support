@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('kode');
+            $table->string('kode');
             $table->string('client');
             $table->string('name');
             $table->string('creative_brief');

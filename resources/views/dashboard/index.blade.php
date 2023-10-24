@@ -12,9 +12,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                    </ol>
+                    <h1>Dashboard</h1>
                 </div>
             </div>
         </div>
@@ -24,7 +22,19 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-kraf">
+                        <div class="inner">
+                            <h3>{{ $project }}</h3>
+
+                            <p>Our Project</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="{{ route('project.index') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

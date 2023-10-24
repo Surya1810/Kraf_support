@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
+    $project = Project::all()->count();
+
+    return view('dashboard.index', compact('project'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -32,6 +35,9 @@ Route::middleware('auth')->group(function () {
 
     // Project Management
     Route::resource('project', ProjectController::class);
+    Route::get('/project/detail/{kode}', [ProjectController::class, 'detail'])->name('project.detail');
+    Route::get('/project/task/{kode}', [ProjectController::class, 'task'])->name('project.task');
+    Route::get('/project/review/{kode}', [ProjectController::class, 'review'])->name('project.review');
 });
 
 Auth::routes();

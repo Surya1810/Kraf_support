@@ -34,6 +34,16 @@
     color: #fff;
 }
 
+.link-kraf {
+    color: #f15d4b;
+}
+.link-kraf:hover {
+    color: #ef3833;
+}
+.bg-kraf {
+    background-color: #f15d4b;
+    color: #fff;
+}
 /* Sidebar */
 
 /* input {
