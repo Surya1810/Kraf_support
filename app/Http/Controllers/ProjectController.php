@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        $users = User::all();
 
-        return view('project.index', compact('projects'));
+        return view('project.index', compact('projects', 'users'));
     }
 
     /**
@@ -37,6 +39,12 @@ class ProjectController extends Controller
         $request->validate([
             'name' => 'bail|required',
             'client' => 'bail|required',
+            'creative_brief' => 'bail|required',
+            'pic' => 'bail|required',
+            'assisten' => 'bail|required',
+            'status' => 'bail|required',
+            'urgency' => 'bail|required',
+            'deadline' => 'bail|required',
         ]);
 
         $old = session()->getOldInput();
@@ -44,11 +52,12 @@ class ProjectController extends Controller
         $project = new Project();
         $project->name = $request->name;
         $project->client = $request->client;
-        $project->kode = Str::random(5);
+        $project->kode = (Str::random(5));
         $project->creative_brief = $request->creative_brief;
         $project->pic = $request->pic;
         $project->status = $request->status;
         $project->urgency = $request->urgency;
+        $project->deadline = $request->deadline;
         $project->assisten = implode(',', $request->assisten);;
         $project->save();
 

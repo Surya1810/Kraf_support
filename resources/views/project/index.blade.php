@@ -39,53 +39,55 @@
                                 <div class="col-6">
                                     <h3 class="card-title">Project List</h3>
                                 </div>
-                                <div class="col-6">
-                                    <a href="{{ route('project.create') }}"
-                                        class="btn btm-sm btn-outline-dark rounded-kraf float-right">Create
-                                        Project</a>
-                                </div>
+                                @if (auth()->user()->id === 1 || 9)
+                                    <div class="col-6">
+                                        <a href="{{ route('project.create') }}"
+                                            class="btn btn-sm btn-kraf rounded-kraf float-right">Create
+                                            Project</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="card-body table-responsive">
-                                <table id="projectTable" class="table table-bordered">
+                                <table id="projectTable" class="table table-bordered text-nowrap">
                                     <thead class="table-dark">
                                         <tr>
                                             <th style="width: 2%">
                                                 Code
                                             </th>
-                                            <th style="width: 20%">
+                                            <th style="width: 35%">
                                                 Project Name
                                             </th>
-                                            <th style="width: 10%">
+                                            <th style="width: 13%">
+                                                Created at
+                                            </th>
+                                            <th style="width: 13%">
+                                                Due Date
+                                            </th>
+                                            {{-- <th style="width: 10%">
                                                 PIC
                                             </th>
-                                            <th style="width: 30%">
+                                            <th style="width: 20%">
                                                 Team Members
-                                            </th>
-                                            <th style="width: 10%" class="text-center">
+                                            </th> --}}
+                                            <th style="width: 10%">
                                                 Status
                                             </th>
-                                            <th style="width: 8%" class="text-center">
+                                            <th style="width: 10%">
                                                 Urgency
                                             </th>
-                                            <th style="width: 20%"></th>
+                                            <th style="width: 20%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($projects as $project)
                                             <tr>
                                                 <td>{{ $project->kode }}</td>
-                                                <td>
-                                                    <a>
-                                                        {{ $project->name }}
-                                                    </a>
-                                                    <br>
-                                                    <small>
-                                                        Created at {{ $project->created_at->format('m/d/Y') }}
-                                                    </small>
-                                                </td>
-                                                <td>
+                                                <td class="text-wrap">{{ $project->name }}</td>
+                                                <td>{{ $project->created_at->toFormattedDateString('d/m/y') }}</td>
+                                                <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
+                                                {{-- <td>
                                                     <span class="badge badge-warning">
                                                         {{ $project->pic }}
                                                     </span>
@@ -100,7 +102,7 @@
                                                             {{ $user }}
                                                         </span>
                                                     @endforeach
-                                                </td>
+                                                </td> --}}
                                                 <td class="text-center">
                                                     @if ($project->status === 'Finished')
                                                         <span class="badge badge-success">
@@ -132,20 +134,29 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-
-                                                    <a class="btn btn-info btn-sm"
-                                                        href="{{ route('project.detail', $project->kode) }}">
-                                                        <i class="fas fa-folder"></i>
-                                                        View
-                                                    </a>
-                                                    @if (Auth::user()->id === 2)
-                                                        <a class="btn btn-warning btn-sm"
+                                                    @if (auth()->user()->id === 1 || 9)
+                                                        <a class="btn btn-sm btn-info rounded-kraf"
+                                                            href="{{ route('project.detail', $project->kode) }}">
+                                                            <i class="fas fa-folder"></i>
+                                                        </a>
+                                                        <a class="btn btn-sm btn-warning rounded-kraf"
                                                             href="{{ route('project.edit', $project->kode) }}">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
-                                                        <a class="btn btn-danger btn-sm"
-                                                            href="{{ route('project.destroy', $project->kode) }}">
-                                                            <i class="fas fa-trash"></i>
+                                                        <button class="btn btn-sm btn-danger rounded-kraf"
+                                                            onclick="deleteProject({{ $project->id }})"><i
+                                                                class="fas fa-trash"></i></button>
+                                                        <form id="delete-form-{{ $project->id }}"
+                                                            action="{{ route('project.destroy', $project->id) }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    @else
+                                                        <a class="btn btn-sm btn-info rounded-kraf"
+                                                            href="{{ route('project.detail', $project->kode) }}">
+                                                            <i class="fas fa-folder"></i>
+                                                            View Project
                                                         </a>
                                                     @endif
                                                 </td>
@@ -179,25 +190,58 @@
     <script src="{{ asset('assets/adminLTE/plugins/toastr/toastr.min.js') }}"></script>
 
     <script type="text/javascript">
-        $('#projectTable').DataTable({
-            "paging": true,
-            'processing': true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": true,
-            "scrollX": true,
-            // width: "700px",
-            // "responsive": true,
-        }).buttons().container().appendTo('#projectTable_wrapper .col-md-6:eq(0)');
+        $(function() {
+            $('#projectTable').DataTable({
+                "paging": true,
+                'processing': true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                // "scrollX": true,
+                // width: "700px",
+                // columnDefs: [{
+                //     className: 'dtr-control',
+                //     orderable: false,
+                //     targets: -8
+                // }]
+            });
+        });
 
+        function deleteProject(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-' + id).submit();
+                } else if (
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your data is safe !',
+                        'error'
+                    )
+                }
+            })
+        }
 
 
         @if (session('pesan'))
             @switch(session('level-alert'))
                 @case('alert-success')
                 toastr.success("{{ Session::get('pesan') }}", 'Success');
+                @break
+
+                @case('alert-danger')
+                toastr.error("{{ Session::get('pesan') }}", 'Error');
                 @break
 
                 @default

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('pic');
             $table->string('assisten');
             $table->string('urgency');
+            $table->date('deadline');
             $table->longText('review')->nullable();
             $table->timestamps();
         });

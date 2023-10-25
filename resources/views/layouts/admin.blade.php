@@ -130,7 +130,7 @@
                         </li>
                         <li class="nav-header mt-3">MENU</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('employee.index') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-id-card"></i>
                                 <p>
                                     Employee
@@ -176,9 +176,17 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('project.index') }}" class="nav-link">
-                                <i class="nav-icon fa-solid fa-clipboard-list"></i>
+                                <i class="nav-icon fa-solid fa-clipboard-check"></i>
                                 <p>
                                     Project
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clipboard-list"></i>
+                                <p>
+                                    Notulen
                                 </p>
                             </a>
                         </li>

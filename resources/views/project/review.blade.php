@@ -33,16 +33,6 @@
                         <div class="card-header p-0 border-bottom-0">
                             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link link-kraf active" id="project-tab" data-toggle="pill"
-                                        href="{{ route('project.detail') }}" role="tab" aria-controls="project"
-                                        aria-selected="true">Projects</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link link-kraf" id="task-tab" data-toggle="pill"
-                                        href="{{ route('project.task') }}" role="tab" aria-controls="task"
-                                        aria-selected="false">Task</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link link-kraf" id="review-tab" data-toggle="pill"
                                         href="{{ route('project.review') }}" role="tab" aria-controls="review"
                                         aria-selected="false">Review</a>

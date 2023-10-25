@@ -41,7 +41,7 @@
                                     <div class="form-group">
                                         <label for="name">Project name</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" placeholder="Enter project name" required
+                                            id="name" name="name" placeholder="Enter project name"
                                             value="{{ old('name') }}">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                                     <div class="form-group">
                                         <label for="client">Client name</label>
                                         <input type="text" class="form-control @error('client') is-invalid @enderror"
-                                            id="client" name="client" placeholder="Enter client name" required
+                                            id="client" name="client" placeholder="Enter client name"
                                             value="{{ old('client') }}">
                                         @error('client')
                                             <span class="invalid-feedback" role="alert">
@@ -65,9 +65,9 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label>Creative Brief</label>
+                                        <label for="creative_brief">Creative Brief</label>
                                         <textarea class="form-control @error('creative_brief') is-invalid @enderror" rows="4"
-                                            placeholder="Enter creative brief..." name="creative_brief" required></textarea>
+                                            placeholder="Enter creative brief..." id="creative_brief" name="creative_brief">{{ old('creative_brief') }}</textarea>
                                         @error('creative_brief')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -77,14 +77,14 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>PIC</label>
-                                        <select class="form-control pic select2-orange @error('pic') is-invalid @enderror"
-                                            data-dropdown-css-class="select2-orange" style="width: 100%;" name="pic"
-                                            required>
+                                        <label for="pic">PIC</label>
+                                        <select class="form-control pic select2-orange is-invalid"
+                                            data-dropdown-css-class="select2-orange" style="width: 100%;" id="pic"
+                                            name="pic">
                                             <option></option>
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}"
-                                                    @if ($user->id == old('user')) selected @endif>{{ $user->name }}
+                                                    {{ old('pic') == $user->id ? 'selected' : '' }}>{{ $user->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -97,12 +97,12 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label>Team Members</label>
+                                        <label for="assisten">Team Members</label>
                                         <div class="select2-orange">
                                             <select
                                                 class="form-control team select2 @error('assisten') is-invalid @enderror"
                                                 multiple="multiple" data-dropdown-css-class="select2-orange"
-                                                style="width: 100%;" name="assisten[]" required>
+                                                style="width: 100%;" id="assisten" name="assisten[]">
                                                 @foreach ($users as $user)
                                                     @if (old('assisten'))
                                                         <option value="{{ $user->id }}"
@@ -124,18 +124,20 @@
                                 <div class="col-12">
                                     <hr>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label for="status">Status</label>
                                         <select
                                             class="form-control status select2-orange @error('status') is-invalid @enderror"
-                                            data-dropdown-css-class="select2-orange" style="width: 100%;" name="status"
-                                            required>
+                                            data-dropdown-css-class="select2-orange" style="width: 100%;" id="status"
+                                            name="status">
                                             <option></option>
-                                            <option value="Planning" @if ($user->id == old('status')) selected @endif>
+                                            <option value="Planning" {{ old('status') == 'Planning' ? 'selected' : '' }}>
                                                 Planning</option>
-                                            <option value="On Going">On Going</option>
-                                            <option value="Finished">Finished</option>
+                                            <option value="On Going" {{ old('status') == 'On Going' ? 'selected' : '' }}>On
+                                                Going</option>
+                                            <option value="Finished" {{ old('status') == 'Finished' ? 'selected' : '' }}>
+                                                Finished</option>
                                         </select>
                                         @error('status')
                                             <span class="invalid-feedback" role="alert">
@@ -144,19 +146,36 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <div class="form-group">
-                                        <label>Urgency</label>
+                                        <label for="urgency">Urgency</label>
                                         <select
                                             class="form-control urgency select2-orange @error('urgency') is-invalid @enderror"
-                                            data-dropdown-css-class="select2-orange" style="width: 100%;" name="urgency"
-                                            required>
+                                            data-dropdown-css-class="select2-orange" style="width: 100%;" id="urgency"
+                                            name="urgency">
                                             <option></option>
-                                            <option value="High">High</option>
-                                            <option value="Medium">Medium</option>
-                                            <option value="Low">Low</option>
+                                            <option value="High" {{ old('urgency') == 'High' ? 'selected' : '' }}>High
+                                            </option>
+                                            <option value="Medium" {{ old('urgency') == 'Medium' ? 'selected' : '' }}>
+                                                Medium</option>
+                                            <option value="Low" {{ old('urgency') == 'Low' ? 'selected' : '' }}>Low
+                                            </option>
                                         </select>
                                         @error('urgency')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="deadline">Due Date</label>
+
+                                        <input type="date" class="form-control @error('deadline') is-invalid @enderror"
+                                            id="deadline" name="deadline" value="{{ old('deadline') }}">
+
+                                        @error('deadline')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -191,10 +210,12 @@
             })
             $('.status').select2({
                 placeholder: "Select status",
+                minimumResultsForSearch: -1,
                 allowClear: true,
             })
             $('.urgency').select2({
                 placeholder: "Select urgency",
+                minimumResultsForSearch: -1,
                 allowClear: true,
             })
         })
