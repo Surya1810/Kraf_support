@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('urgency');
             $table->date('deadline');
             $table->longText('review')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

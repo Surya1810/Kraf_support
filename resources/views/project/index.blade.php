@@ -39,7 +39,7 @@
                                 <div class="col-6">
                                     <h3 class="card-title">Project List</h3>
                                 </div>
-                                @if (auth()->user()->id === 1 || 9)
+                                @if (auth()->user()->id == 1 || auth()->user()->id == 9)
                                     <div class="col-6">
                                         <a href="{{ route('project.create') }}"
                                             class="btn btn-sm btn-kraf rounded-kraf float-right">Create
@@ -133,8 +133,17 @@
                                                         </span>
                                                     @endif
                                                 </td>
+                                                {{-- <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td> --}}
                                                 <td class="text-center">
-                                                    @if (auth()->user()->id === 1 || 9)
+                                                    @if (auth()->user()->id == 1 || auth()->user()->id == 9)
                                                         <a class="btn btn-sm btn-info rounded-kraf"
                                                             href="{{ route('project.detail', $project->kode) }}">
                                                             <i class="fas fa-folder"></i>

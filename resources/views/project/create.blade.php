@@ -132,12 +132,15 @@
                                             data-dropdown-css-class="select2-orange" style="width: 100%;" id="status"
                                             name="status">
                                             <option></option>
+                                            <option value="Discussion"
+                                                {{ old('status') == 'Discussion' ? 'selected' : '' }}>
+                                                Discussion</option>
                                             <option value="Planning" {{ old('status') == 'Planning' ? 'selected' : '' }}>
                                                 Planning</option>
                                             <option value="On Going" {{ old('status') == 'On Going' ? 'selected' : '' }}>On
                                                 Going</option>
-                                            <option value="Finished" {{ old('status') == 'Finished' ? 'selected' : '' }}>
-                                                Finished</option>
+                                            {{-- <option value="Finished" {{ old('status') == 'Finished' ? 'selected' : '' }}>
+                                                Finished</option> --}}
                                         </select>
                                         @error('status')
                                             <span class="invalid-feedback" role="alert">
@@ -184,7 +187,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer rounded-kraf">
                             <button type="submit" class="btn btn-kraf float-right">
                                 Create
                             </button>
