@@ -146,7 +146,7 @@
                                                     @if (auth()->user()->id == 1 || auth()->user()->id == 9)
                                                         <a class="btn btn-sm btn-info rounded-kraf"
                                                             href="{{ route('project.detail', $project->kode) }}">
-                                                            <i class="fas fa-folder"></i>
+                                                            <i class="fa-solid fa-eye"></i>
                                                         </a>
                                                         <a class="btn btn-sm btn-warning rounded-kraf"
                                                             href="{{ route('project.edit', $project->kode) }}">
@@ -164,7 +164,7 @@
                                                     @else
                                                         <a class="btn btn-sm btn-info rounded-kraf"
                                                             href="{{ route('project.detail', $project->kode) }}">
-                                                            <i class="fas fa-folder"></i>
+                                                            <i class="fa-solid fa-eye"></i>
                                                             View Project
                                                         </a>
                                                     @endif

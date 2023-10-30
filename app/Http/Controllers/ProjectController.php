@@ -18,7 +18,8 @@ class ProjectController extends Controller
     {
         // $now = Carbon::now()->format('m');
         // $projects = Project::whereMonth('deadline', '=', $now)->get();
-        $projects = Project::where('is_active', '=', true)->get();
+        // $projects = Project::where('is_active', '=', true)->get();
+        $projects = Project::all();
         $users = User::all();
 
         return view('project.index', compact('projects', 'users'));
@@ -134,10 +135,12 @@ class ProjectController extends Controller
 
         if ($project->status != 'Finished') {
             $asisten = explode(',', $project->assisten);
-            $pic = User::where('id', $project->pic)->first();
-            $team = User::whereIn('id', $asisten)->get();
+            $pic = User::where('id', $project->pic)->pluck('id');
+            $team = User::whereIn('id', $asisten)->pluck('id');
             $pic_1 = explode(',', $pic);
-            $access = array_merge($pic_1, compact('team'));
+            $admin = [1, 9];
+            $access = $pic->merge($team)->merge($admin);
+            // dd();
             return view('project.task', compact('project', 'access'));
         } else {
             abort(404);

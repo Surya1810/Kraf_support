@@ -57,7 +57,7 @@
                                     aria-labelledby="tabs_project">
                                     <h5>Project Details - <strong>{{ $project->name }}</strong></h5>
 
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-6">
                                             <h4>{{ $project->name }}</h4>
                                             <h4>{{ $project->creative_brief }}</h4>
@@ -71,6 +71,35 @@
                                             <h4>{{ $project->urgency }}</h4>
                                             <h4>{{ $project->client }}</h4>
                                             <h4>{{ $project->deadline->toFormattedDateString('d/m/y') }}</h4>
+                                        </div>
+                                    </div> --}}
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="card bg-kraf">
+                                                <div class="card-body">
+                                                    <h4>Project Name</h4>
+                                                    {{ $project->name }}
+                                                    <h4>Client Name</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="card bg-kraf">
+                                                <div class="card-body">
+                                                    <h4>Project Name</h4>
+                                                    {{ $project->name }}
+                                                    <h4>Client Name</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="card bg-kraf">
+                                                <div class="card-body">
+                                                    <h4>Project Name</h4>
+                                                    {{ $project->name }}
+                                                    <h4>Client Name</h4>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
