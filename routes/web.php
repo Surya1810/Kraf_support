@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AgentController;
+use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
@@ -43,6 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/project/task/{kode}', [ProjectController::class, 'task'])->name('project.task');
     Route::get('/project/review/{kode}', [ProjectController::class, 'review'])->name('project.review');
     Route::post('/project/done/{id}', [ProjectController::class, 'done'])->name('project.done');
+
+    // Agent
+    Route::resource('agent', AgentController::class);
+
+    //Network
+    Route::resource('network', NetworkController::class);
 });
 
 Auth::routes();

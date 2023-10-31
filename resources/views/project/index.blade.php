@@ -86,7 +86,13 @@
                                                 <td>{{ $project->kode }}</td>
                                                 <td class="text-wrap">{{ $project->name }}</td>
                                                 <td>{{ $project->created_at->toFormattedDateString('d/m/y') }}</td>
-                                                <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
+                                                @if ($project->deadline->toFormattedDateString('d/m/y') == $now)
+                                                    <td class="text-danger">
+                                                        <strong>{{ $project->deadline->toFormattedDateString('d/m/y') }}</strong>
+                                                    </td>
+                                                @else
+                                                    <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
+                                                @endif
                                                 {{-- <td>
                                                     <span class="badge badge-warning">
                                                         {{ $project->pic }}
@@ -112,8 +118,12 @@
                                                         <span class="badge badge-info">
                                                             {{ $project->status }}
                                                         </span>
-                                                    @else
+                                                    @elseif ($project->status === 'Planning')
                                                         <span class="badge badge-warning">
+                                                            {{ $project->status }}
+                                                        </span>
+                                                    @else
+                                                        <span class="badge badge-light">
                                                             {{ $project->status }}
                                                         </span>
                                                     @endif
@@ -148,10 +158,12 @@
                                                             href="{{ route('project.detail', $project->kode) }}">
                                                             <i class="fa-solid fa-eye"></i>
                                                         </a>
-                                                        <a class="btn btn-sm btn-warning rounded-kraf"
-                                                            href="{{ route('project.edit', $project->kode) }}">
-                                                            <i class="fas fa-pencil-alt"></i>
-                                                        </a>
+                                                        @if ($project->status != 'Finished')
+                                                            <a class="btn btn-sm btn-success rounded-kraf"
+                                                                href="{{ route('project.edit', $project->kode) }}">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </a>
+                                                        @endif
                                                         <button class="btn btn-sm btn-danger rounded-kraf"
                                                             onclick="deleteProject({{ $project->id }})"><i
                                                                 class="fas fa-trash"></i></button>

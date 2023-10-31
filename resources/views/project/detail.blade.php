@@ -75,29 +75,32 @@
                                     </div> --}}
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <div class="card bg-kraf">
+                                            <div class="card">
                                                 <div class="card-body">
                                                     <h4>Project Name</h4>
                                                     {{ $project->name }}
                                                     <h4>Client Name</h4>
+                                                    {{ $project->client }}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="card bg-kraf">
                                                 <div class="card-body">
-                                                    <h4>Project Name</h4>
-                                                    {{ $project->name }}
-                                                    <h4>Client Name</h4>
+                                                    <h4>Creative Brief</h4>
+                                                    {{ $project->creative_brief }}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="card bg-kraf">
                                                 <div class="card-body">
-                                                    <h4>Project Name</h4>
-                                                    {{ $project->name }}
-                                                    <h4>Client Name</h4>
+                                                    <h4>PIC</h4>
+                                                    {{ $pic->name }}
+                                                    <h4>Team</h4>
+                                                    @foreach ($team as $data)
+                                                        {{ $data->name }}
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

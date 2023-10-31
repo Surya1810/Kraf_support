@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('assisten');
             $table->string('urgency');
             $table->date('deadline');
-            $table->boolean('is_active')->default(true);
+            // $table->boolean('is_active')->default(true);
             $table->longText('review')->nullable();
             $table->softDeletes();
             $table->timestamps();

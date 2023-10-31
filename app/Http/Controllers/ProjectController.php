@@ -16,13 +16,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // $now = Carbon::now()->format('m');
-        // $projects = Project::whereMonth('deadline', '=', $now)->get();
-        // $projects = Project::where('is_active', '=', true)->get();
-        $projects = Project::all();
+        $now = Carbon::now()->toFormattedDateString('d/m/y');
+        $projects = Project::where('deadline', '<=', today())->get();
         $users = User::all();
 
-        return view('project.index', compact('projects', 'users'));
+        return view('project.index', compact('projects', 'users', 'now'));
     }
 
     /**
@@ -86,10 +84,12 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit($kode)
     {
         if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            return view('project.edit');
+            $project = Project::where('kode', $kode);
+            $users = User::where('id', '!=', '1')->get();
+            return view('project.edit', compact('project', 'users'));
         } else {
             abort(404);
         }
@@ -109,9 +109,14 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
         if (Auth::user()->id == '1' || Auth::user()->id == '9') {
+            $project = Project::find($id);
+
+            $project->delete();
+
+            return redirect()->route('project.index')->with(['pesan' => 'Project deleted successfully', 'level-alert' => 'alert-danger']);
         } else {
             abort(404);
         }

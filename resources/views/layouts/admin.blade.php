@@ -190,6 +190,23 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-header mt-3">MEMBERSHIP</li>
+                        <li class="nav-item">
+                            <a href="{{ route('agent.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-id-card"></i>
+                                <p>
+                                    Agent
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('network.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-network-wired"></i>
+                                <p>
+                                    Network
+                                </p>
+                            </a>
+                        </li>
                         <hr>
                     </ul>
                 </nav>
