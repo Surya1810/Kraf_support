@@ -48,52 +48,51 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="card-body table-responsive">
-                                <table id="projectTable" class="table table-bordered text-nowrap">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th style="width: 2%">
-                                                Code
-                                            </th>
-                                            <th style="width: 35%">
-                                                Project Name
-                                            </th>
-                                            <th style="width: 13%">
-                                                Created at
-                                            </th>
-                                            <th style="width: 13%">
-                                                Due Date
-                                            </th>
-                                            {{-- <th style="width: 10%">
+                        <div class="card-body table-responsive">
+                            <table id="projectTable" class="table table-bordered text-nowrap">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 2%">
+                                            Code
+                                        </th>
+                                        <th style="width: 35%">
+                                            Project Name
+                                        </th>
+                                        <th style="width: 13%">
+                                            Created at
+                                        </th>
+                                        <th style="width: 13%">
+                                            Due Date
+                                        </th>
+                                        {{-- <th style="width: 10%">
                                                 PIC
                                             </th>
                                             <th style="width: 20%">
                                                 Team Members
                                             </th> --}}
-                                            <th style="width: 10%">
-                                                Status
-                                            </th>
-                                            <th style="width: 10%">
-                                                Urgency
-                                            </th>
-                                            <th style="width: 20%">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($projects as $project)
-                                            <tr>
-                                                <td>{{ $project->kode }}</td>
-                                                <td class="text-wrap">{{ $project->name }}</td>
-                                                <td>{{ $project->created_at->toFormattedDateString('d/m/y') }}</td>
-                                                @if ($project->deadline->toFormattedDateString('d/m/y') == $now)
-                                                    <td class="text-danger">
-                                                        <strong>{{ $project->deadline->toFormattedDateString('d/m/y') }}</strong>
-                                                    </td>
-                                                @else
-                                                    <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
-                                                @endif
-                                                {{-- <td>
+                                        <th style="width: 10%">
+                                            Status
+                                        </th>
+                                        <th style="width: 10%">
+                                            Urgency
+                                        </th>
+                                        <th style="width: 20%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($projects as $project)
+                                        <tr>
+                                            <td>{{ $project->kode }}</td>
+                                            <td class="text-wrap">{{ $project->name }}</td>
+                                            <td>{{ $project->created_at->toFormattedDateString('d/m/y') }}</td>
+                                            @if ($project->deadline->toFormattedDateString('d/m/y') == $now)
+                                                <td class="text-danger">
+                                                    <strong>{{ $project->deadline->toFormattedDateString('d/m/y') }}</strong>
+                                                </td>
+                                            @else
+                                                <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
+                                            @endif
+                                            {{-- <td>
                                                     <span class="badge badge-warning">
                                                         {{ $project->pic }}
                                                     </span>
@@ -109,41 +108,41 @@
                                                         </span>
                                                     @endforeach
                                                 </td> --}}
-                                                <td class="text-center">
-                                                    @if ($project->status === 'Finished')
-                                                        <span class="badge badge-success">
-                                                            {{ $project->status }}
-                                                        </span>
-                                                    @elseif ($project->status === 'On Going')
-                                                        <span class="badge badge-info">
-                                                            {{ $project->status }}
-                                                        </span>
-                                                    @elseif ($project->status === 'Planning')
-                                                        <span class="badge badge-warning">
-                                                            {{ $project->status }}
-                                                        </span>
-                                                    @else
-                                                        <span class="badge badge-light">
-                                                            {{ $project->status }}
-                                                        </span>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($project->urgency === 'High')
-                                                        <span class="badge badge-danger">
-                                                            {{ $project->urgency }}
-                                                        </span>
-                                                    @elseif ($project->urgency === 'Medium')
-                                                        <span class="badge badge-orange">
-                                                            {{ $project->urgency }}
-                                                        </span>
-                                                    @else
-                                                        <span class="badge badge-warning">
-                                                            {{ $project->urgency }}
-                                                        </span>
-                                                    @endif
-                                                </td>
-                                                {{-- <td class="project_progress">
+                                            <td class="text-center">
+                                                @if ($project->status === 'Finished')
+                                                    <span class="badge badge-success">
+                                                        {{ $project->status }}
+                                                    </span>
+                                                @elseif ($project->status === 'On Going')
+                                                    <span class="badge badge-info">
+                                                        {{ $project->status }}
+                                                    </span>
+                                                @elseif ($project->status === 'Planning')
+                                                    <span class="badge badge-warning">
+                                                        {{ $project->status }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge badge-light">
+                                                        {{ $project->status }}
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                @if ($project->urgency === 'High')
+                                                    <span class="badge badge-danger">
+                                                        {{ $project->urgency }}
+                                                    </span>
+                                                @elseif ($project->urgency === 'Medium')
+                                                    <span class="badge badge-orange">
+                                                        {{ $project->urgency }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge badge-warning">
+                                                        {{ $project->urgency }}
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            {{-- <td class="project_progress">
                           <div class="progress progress-sm">
                               <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
                               </div>
@@ -152,40 +151,39 @@
                               57% Complete
                           </small>
                       </td> --}}
-                                                <td class="text-center">
-                                                    @if (auth()->user()->id == 1 || auth()->user()->id == 9)
-                                                        <a class="btn btn-sm btn-info rounded-kraf"
-                                                            href="{{ route('project.detail', $project->kode) }}">
-                                                            <i class="fa-solid fa-eye"></i>
-                                                        </a>
-                                                        @if ($project->status != 'Finished')
-                                                            <a class="btn btn-sm btn-success rounded-kraf"
-                                                                href="{{ route('project.edit', $project->kode) }}">
-                                                                <i class="fas fa-pencil-alt"></i>
-                                                            </a>
-                                                        @endif
-                                                        <button class="btn btn-sm btn-danger rounded-kraf"
-                                                            onclick="deleteProject({{ $project->id }})"><i
-                                                                class="fas fa-trash"></i></button>
-                                                        <form id="delete-form-{{ $project->id }}"
-                                                            action="{{ route('project.destroy', $project->id) }}"
-                                                            method="POST" style="display: none;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                        </form>
-                                                    @else
-                                                        <a class="btn btn-sm btn-info rounded-kraf"
-                                                            href="{{ route('project.detail', $project->kode) }}">
-                                                            <i class="fa-solid fa-eye"></i>
-                                                            View Project
+                                            <td class="text-center">
+                                                @if (auth()->user()->id == 1 || auth()->user()->id == 9)
+                                                    <a class="btn btn-sm btn-info rounded-kraf"
+                                                        href="{{ route('project.detail', $project->kode) }}">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+                                                    @if ($project->status != 'Finished')
+                                                        <a class="btn btn-sm btn-success rounded-kraf"
+                                                            href="{{ route('project.edit', $project->kode) }}">
+                                                            <i class="fas fa-pencil-alt"></i>
                                                         </a>
                                                     @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                                    <button class="btn btn-sm btn-danger rounded-kraf"
+                                                        onclick="deleteProject({{ $project->id }})"><i
+                                                            class="fas fa-trash"></i></button>
+                                                    <form id="delete-form-{{ $project->id }}"
+                                                        action="{{ route('project.destroy', $project->id) }}"
+                                                        method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @else
+                                                    <a class="btn btn-sm btn-info rounded-kraf"
+                                                        href="{{ route('project.detail', $project->kode) }}">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                        View Project
+                                                    </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

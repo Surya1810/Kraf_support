@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Agent
+    Product - Catalog
 @endsection
 
 @push('css')
@@ -18,10 +18,10 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Agent</h1>
+                    <h1>Catalog</h1>
                     <ol class="breadcrumb text-black-50">
                         <li class="breadcrumb-item"><a class="text-black-50" href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active"><strong>Agent</strong></li>
+                        <li class="breadcrumb-item active"><strong>Catalog</strong></li>
                     </ol>
                 </div>
             </div>
@@ -37,61 +37,50 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <h3 class="card-title">Agent List</h3>
+                                    <h3 class="card-title">Product Catalog</h3>
                                 </div>
+                                @if (auth()->user()->id == 1 || auth()->user()->id == 10)
+                                    <div class="col-6">
+                                        <a href="{{ route('project.create') }}"
+                                            class="btn btn-sm btn-kraf rounded-kraf float-right">Create
+                                            Product</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="card-body table-responsive">
-                                <table id="projectTable" class="table table-bordered text-nowrap text-center">
-                                    <thead class="table-dark">
+                        <div class="card-body table-responsive">
+                            <table id="productTable" class="table table-bordered text-nowrap">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 10%">
+                                            Code
+                                        </th>
+                                        <th style="width: 15%">
+                                            Photo
+                                        </th>
+                                        <th style="width: 20%">
+                                            Name
+                                        </th>
+                                        <th style="width: 15%">
+                                            Category
+                                        </th>
+                                        <th style="width: 15%">
+                                            Price
+                                        </th>
+                                        <th style="width: 10%">
+                                            Stock
+                                        </th>
+                                        <th style="width: 15%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($products as $product)
                                         <tr>
-                                            <th style="width: 5%">
-                                                ID
-                                            </th>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Email
-                                            </th>
-                                            <th>
-                                                Signature
-                                            </th>
-                                            <th>
-                                                Status
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($agents as $agent)
-                                            <tr>
-                                                <td>{{ $agent->id }}</td>
-                                                <td>{{ $agent->name }}</td>
-                                                <td>{{ $agent->email }}</td>
-                                                <td>
-                                                    @if ($agent->sign === null)
-                                                        <span class="badge badge-dark">None</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($agent->is_active === 1)
-                                                        Active
-                                                    @else
-                                                        Disabled
-                                                    @endif
-                                                </td>
-                                                <td>
 
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -118,7 +107,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#projectTable').DataTable({
+            $('#productTable').DataTable({
                 "paging": true,
                 'processing': true,
                 "lengthChange": true,
@@ -137,10 +126,38 @@
             });
         });
 
+        function deleteProject(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-' + id).submit();
+                } else if (
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your data is safe !',
+                        'error'
+                    )
+                }
+            })
+        }
+
+
         @if (session('pesan'))
             @switch(session('level-alert'))
                 @case('alert-success')
                 toastr.success("{{ Session::get('pesan') }}", 'Success');
+                @break
+
+                @case('alert-danger')
+                toastr.error("{{ Session::get('pesan') }}", 'Error');
                 @break
 
                 @default

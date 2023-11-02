@@ -137,14 +137,14 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-regular fa-paste"></i>
                                 <p>
                                     Transaction
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-boxes-packing"></i>
@@ -155,7 +155,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('product.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Catalog</p>
                                     </a>
@@ -182,14 +182,14 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-clipboard-list"></i>
                                 <p>
                                     Notulen
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-header mt-3">MEMBERSHIP</li>
                         <li class="nav-item">
                             <a href="{{ route('agent.index') }}" class="nav-link">
