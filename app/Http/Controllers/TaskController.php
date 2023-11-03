@@ -44,7 +44,7 @@ class TaskController extends Controller
         $project->title = $request->title;
         $project->desc = $request->desc;
         $project->attachment = $request->attachment;
-        $project->by = Auth::user()->name;
+        $project->by = Auth::user()->username;
         $project->order = '1';
         $project->save();
 
@@ -91,15 +91,15 @@ class TaskController extends Controller
         $task = Task::find($id);
 
         if ($task->status === 'Done') {
-            $task->by = Auth::user()->name;
+            $task->by = Auth::user()->username;
             $task->status = 'Undone';
             $task->update();
         } else {
-            $task->by = Auth::user()->name;
+            $task->by = Auth::user()->username;
             $task->status = 'Done';
             $task->update();
         }
 
-        return redirect()->back()->with(['pesan' => 'Task created successfully', 'level-alert' => 'alert-success']);
+        return redirect()->back()->with(['pesan' => 'Task updated successfully', 'level-alert' => 'alert-warning']);
     }
 }

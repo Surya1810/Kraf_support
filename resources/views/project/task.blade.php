@@ -93,7 +93,8 @@
                                                     <td>{{ $task->title }}</td>
                                                     <td>{{ $task->desc }}</td>
                                                     <td class="text-center text-sm"><a href="{{ $task->attachment }}"
-                                                            target="_blank"><strong><u>{{ $task->attachment }}</u></strong></a>
+                                                            target="_blank"
+                                                            class="link-kraf"><strong><u>{{ $task->attachment }}</u></strong></a>
                                                     </td>
                                                     <td class="text-center">
                                                         @if ($task->status == 'Done')
@@ -298,7 +299,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-kraf rounded-kraf">Add Step</button>
+                            <button type="submit" class="btn btn-kraf rounded-kraf">Update Step</button>
                         </div>
                     </form>
                 </div>

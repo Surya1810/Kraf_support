@@ -19,7 +19,6 @@ class ProjectController extends Controller
         $today = Carbon::now()->toFormattedDateString('d/m/y');
         // $projects = Project::where('deadline', '>=', today())->get();
         $projects = Project::where('status', '!=', 'Finished')->orWhere('deadline', '>=', today())->get();
-        // $projects = Project::all();
 
         return view('project.index', compact('projects', 'today'));
     }
@@ -88,8 +87,9 @@ class ProjectController extends Controller
     public function edit($kode)
     {
         if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            $project = Project::where('kode', $kode);
+            $project = Project::where('kode', $kode)->first();
             $users = User::where('id', '!=', '1')->get();
+
             return view('project.edit', compact('project', 'users'));
         } else {
             abort(404);
@@ -99,9 +99,32 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $id)
     {
         if (Auth::user()->id == '1' || Auth::user()->id == '9') {
+            $request->validate([
+                'name' => 'bail|required',
+                'client' => 'bail|required',
+                'creative_brief' => 'bail|required',
+                'pic' => 'bail|required',
+                'assisten' => 'bail|required',
+                'status' => 'bail|required',
+                'urgency' => 'bail|required',
+                'deadline' => 'bail|required',
+            ]);
+
+            $project = Project::find($id);
+            $project->name = $request->name;
+            $project->client = $request->client;
+            $project->creative_brief = $request->creative_brief;
+            $project->pic = $request->pic;
+            $project->status = $request->status;
+            $project->urgency = $request->urgency;
+            $project->deadline = $request->deadline;
+            $project->assisten = implode(',', $request->assisten);
+            $project->update();
+
+            return redirect()->route('project.index')->with(['pesan' => 'Project updated successfully', 'level-alert' => 'alert-warning']);
         } else {
             abort(404);
         }

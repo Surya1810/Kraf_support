@@ -80,19 +80,39 @@
                                     @foreach ($projects as $project)
                                         <tr>
                                             <td>{{ $project->kode }}</td>
-                                            <td class="text-wrap">{{ $project->name }}</td>
+                                            <td class="text-wrap">{{ $project->name }}
+                                                @if ($project->deadline->isPast())
+                                                    <span class="badge badge-danger">
+                                                        Overdue
+                                                    </span>
+                                                    <br>
+                                                @endif
+                                            </td>
                                             <td>
+                                                @php
+                                                    $finished = $project->tasks->where('status', 'Done')->count();
+                                                    $total = $project->tasks->count();
+                                                    if ($finished == null || $total == null) {
+                                                        $progress = 0;
+                                                    } else {
+                                                        $progress = ($finished / $total) * 100;
+                                                    }
+                                                @endphp
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-success-2" role="progressbar"
                                                         aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
-                                                        style="width: 57%">
+                                                        style="width: {{ $progress }}%">
                                                     </div>
                                                 </div>
                                                 <small>
-                                                    57% Complete
+                                                    @if ($progress != null)
+                                                        {{ number_format($progress, 1, ',', '') }}
+                                                    @else
+                                                        No Progress
+                                                    @endif
                                                 </small>
                                             </td>
-                                            @if ($project->deadline->toFormattedDateString('d/m/y') == $today)
+                                            @if ($project->deadline->isPast())
                                                 <td bgcolor="ea9999">
                                                     {{ $project->deadline->toFormattedDateString('d/m/y') }}
                                                 </td>

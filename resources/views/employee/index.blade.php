@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-body table-responsive">
-                                <table id="projectTable" class="table table-bordered text-nowrap text-center">
+                                <table id="employeeTable" class="table table-bordered text-nowrap text-center">
                                     <thead class="table-dark">
                                         <tr>
                                             <th style="width: 5%">
@@ -117,7 +117,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#projectTable').DataTable({
+            $('#employeeTable').DataTable({
                 "paging": true,
                 'processing': true,
                 "lengthChange": true,

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Project Detail
+    Project Overview
 @endsection
 
 @push('css')
@@ -17,7 +17,7 @@
                         <li class="breadcrumb-item"><a class="text-black-50" href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item"><a class="text-black-50" href="{{ route('project.index') }}">Project</a>
                         </li>
-                        <li class="breadcrumb-item active"><strong>Detail</strong></li>
+                        <li class="breadcrumb-item active"><strong>Overview</strong></li>
                     </ol>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                             <div class="tab-content" id="custom-tabs-four-tabContent">
                                 <div class="tab-pane fade show active" id="project" role="tabpanel"
                                     aria-labelledby="tabs_project">
-                                    <h5>Project Details - <strong>{{ $project->name }}</strong></h5>
+                                    <h5>Project - <strong>{{ $project->name }}</strong></h5>
 
                                     {{-- <div class="row">
                                         <div class="col-6">
@@ -96,10 +96,10 @@
                                             <div class="card bg-kraf">
                                                 <div class="card-body">
                                                     <h4>PIC</h4>
-                                                    {{ $pic->name }}
+                                                    {{ $pic->username }}
                                                     <h4>Team</h4>
                                                     @foreach ($team as $data)
-                                                        {{ $data->name }}
+                                                        {{ $data->username }}
                                                     @endforeach
                                                 </div>
                                             </div>

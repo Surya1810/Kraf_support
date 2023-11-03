@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Create Project
+    Edit Project
 @endsection
 
 @push('css')
@@ -17,7 +17,7 @@
                         <li class="breadcrumb-item"><a class="text-black-50" href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item"><a class="text-black-50" href="{{ route('project.index') }}">Project</a>
                         </li>
-                        <li class="breadcrumb-item active"><strong>Create</strong></li>
+                        <li class="breadcrumb-item active"><strong>Edit</strong></li>
                     </ol>
                 </div>
             </div>
@@ -30,9 +30,9 @@
             <div class="row">
                 <div class="card rounded-kraf card-outline card-orange">
                     <div class="card-header">
-                        <h3 class="card-title">Project Create</h3>
+                        <h3 class="card-title">Project Edit</h3>
                     </div>
-                    <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data"
+                    <form action="{{ route('project.update', $project->id) }}" method="POST" enctype="multipart/form-data"
                         autocomplete="off">
                         @csrf
                         <div class="card-body">
@@ -42,7 +42,7 @@
                                         <label for="name">Project name</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             id="name" name="name" placeholder="Enter project name"
-                                            value="{{ old('name') }}">
+                                            value="{{ $project->name }}">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
                                         <label for="client">Client name</label>
                                         <input type="text" class="form-control @error('client') is-invalid @enderror"
                                             id="client" name="client" placeholder="Enter client name"
-                                            value="{{ old('client') }}">
+                                            value="{{ $project->client }}">
                                         @error('client')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                         <label for="creative_brief">Creative Brief</label>
                                         <textarea class="form-control @error('creative_brief') is-invalid @enderror" rows="4"
-                                            placeholder="Enter creative brief..." id="creative_brief" name="creative_brief">{{ old('creative_brief') }}</textarea>
+                                            placeholder="Enter creative brief..." id="creative_brief" name="creative_brief">{{ $project->creative_brief }}</textarea>
                                         @error('creative_brief')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -81,11 +81,10 @@
                                         <select class="form-control pic select2-orange is-invalid"
                                             data-dropdown-css-class="select2-orange" style="width: 100%;" id="pic"
                                             name="pic">
-                                            <option></option>
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}"
-                                                    {{ old('pic') == $user->id ? 'selected' : '' }}>{{ $user->name }}
-                                                </option>
+                                                    {{ $project->pic == $user->id ? ' selected' : '' }}>
+                                                    {{ $user->username }}</option>
                                             @endforeach
                                         </select>
                                         @error('pic')
@@ -133,14 +132,17 @@
                                             name="status">
                                             <option></option>
                                             <option value="Discussion"
-                                                {{ old('status') == 'Discussion' ? 'selected' : '' }}>
+                                                {{ $project->status == 'Discussion' ? 'selected' : '' }}>
                                                 Discussion</option>
-                                            <option value="Planning" {{ old('status') == 'Planning' ? 'selected' : '' }}>
+                                            <option value="Planning"
+                                                {{ $project->status == 'Planning' ? 'selected' : '' }}>
                                                 Planning</option>
-                                            <option value="On Going" {{ old('status') == 'On Going' ? 'selected' : '' }}>On
+                                            <option value="On Going"
+                                                {{ $project->status == 'On Going' ? 'selected' : '' }}>On
                                                 Going</option>
-                                            {{-- <option value="Finished" {{ old('status') == 'Finished' ? 'selected' : '' }}>
-                                                Finished</option> --}}
+                                            <option value="Finished"
+                                                {{ $project->status == 'Finished' ? 'selected' : '' }}>
+                                                Finished</option>
                                         </select>
                                         @error('status')
                                             <span class="invalid-feedback" role="alert">
@@ -157,11 +159,14 @@
                                             data-dropdown-css-class="select2-orange" style="width: 100%;" id="urgency"
                                             name="urgency">
                                             <option></option>
-                                            <option value="High" {{ old('urgency') == 'High' ? 'selected' : '' }}>High
+                                            <option value="High" {{ $project->urgency == 'High' ? 'selected' : '' }}>
+                                                High
                                             </option>
-                                            <option value="Medium" {{ old('urgency') == 'Medium' ? 'selected' : '' }}>
-                                                Medium</option>
-                                            <option value="Low" {{ old('urgency') == 'Low' ? 'selected' : '' }}>Low
+                                            <option value="Medium" {{ $project->urgency == 'Medium' ? 'selected' : '' }}>
+                                                Medium
+                                            </option>
+                                            <option value="Low" {{ $project->urgency == 'Low' ? 'selected' : '' }}>
+                                                Low
                                             </option>
                                         </select>
                                         @error('urgency')
@@ -176,7 +181,8 @@
                                         <label for="deadline">Due Date</label>
 
                                         <input type="date" class="form-control @error('deadline') is-invalid @enderror"
-                                            id="deadline" name="deadline" value="{{ old('deadline') }}">
+                                            id="deadline" name="deadline"
+                                            value="{{ $project->deadline->format('Y-m-d') }}">
 
                                         @error('deadline')
                                             <span class="invalid-feedback" role="alert">
@@ -189,7 +195,7 @@
                         </div>
                         <div class="card-footer rounded-kraf">
                             <button type="submit" class="btn btn-kraf float-right">
-                                Create
+                                Update
                             </button>
                         </div>
                     </form>

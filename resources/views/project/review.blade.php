@@ -55,9 +55,9 @@
                             <div class="tab-content" id="custom-tabs-four-tabContent">
                                 <div class="tab-pane fade show active" id="project" role="tabpanel"
                                     aria-labelledby="tabs_project">
-                                    <h5>Project Review - <strong>{{ $project->name }}</strong></h5>
+                                    <h5>Project - <strong>{{ $project->name }}</strong></h5>
 
-                                    <div class="row">
+                                    <div class="row mt-4">
                                         <div class="col-12">
                                             @if (empty($project->review))
                                                 No Reviews

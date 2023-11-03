@@ -84,7 +84,7 @@
                                             <option></option>
                                             @foreach ($users as $user)
                                                 <option value="{{ $user->id }}"
-                                                    {{ old('pic') == $user->id ? 'selected' : '' }}>{{ $user->name }}
+                                                    {{ old('pic') == $user->id ? 'selected' : '' }}>{{ $user->username }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -107,9 +107,9 @@
                                                     @if (old('assisten'))
                                                         <option value="{{ $user->id }}"
                                                             {{ in_array($user->id, old('assisten')) ? 'selected' : '' }}>
-                                                            {{ $user->name }}</option>
+                                                            {{ $user->username }}</option>
                                                     @else
-                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                        <option value="{{ $user->id }}">{{ $user->username }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>
