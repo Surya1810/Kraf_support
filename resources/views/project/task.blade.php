@@ -81,13 +81,13 @@
                                                 <th style="width: 10%">
                                                     Info
                                                 </th>
-                                                @if (auth()->user()->id === $access)
+                                                @if (in_array(auth()->user()->id, $access->toArray()))
                                                     <th style="width: 10%">Action</th>
                                                 @endif
                                             </tr>
                                         </thead>
                                         <tbody class="text-sm">
-                                            {{-- @foreach ($projects as $project) --}}
+                                            {{-- @foreach ($tasks as $task) --}}
                                             <tr>
                                                 <td class="text-center">1</td>
                                                 <td>Membuat Semua Baik Baik Saja</td>
@@ -102,7 +102,7 @@
                                                 <td>
                                                     <a>Herman</a><br><small class="text-muted">01/01/2019</small>
                                                 </td>
-                                                @if (auth()->user()->id === $access)
+                                                @if (in_array(auth()->user()->id, $access->toArray()))
                                                     <td>
                                                         <button class="btn btn-xs btn-success rounded-kraf">
                                                             Done
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <div class="card-footer rounded-kraf">
-                            @if (auth()->user()->id === $access)
+                            @if (in_array(auth()->user()->id, $access->toArray()))
                                 <button type="button" class="btn btn-kraf rounded-kraf" data-toggle="modal"
                                     data-target="#addStepModal">
                                     Add Step
@@ -247,7 +247,6 @@
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('assets/adminLTE/plugins/toastr/toastr.min.js') }}"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

@@ -16,11 +16,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $now = Carbon::now()->toFormattedDateString('d/m/y');
-        $projects = Project::where('deadline', '<=', today())->get();
-        $users = User::all();
+        $today = Carbon::now()->toFormattedDateString('d/m/y');
+        // $projects = Project::where('deadline', '>=', today())->get();
+        $projects = Project::where('status', '!=', 'Finished')->orWhere('deadline', '>=', today())->get();
+        // $projects = Project::all();
 
-        return view('project.index', compact('projects', 'users', 'now'));
+        return view('project.index', compact('projects', 'today'));
     }
 
     /**
@@ -139,13 +140,18 @@ class ProjectController extends Controller
         $project = Project::where('kode', $kode)->first();
 
         if ($project->status != 'Finished') {
+            // find team
             $asisten = explode(',', $project->assisten);
-            $pic = User::where('id', $project->pic)->pluck('id');
             $team = User::whereIn('id', $asisten)->pluck('id');
+            // find pic
+            $pic = User::where('id', $project->pic)->pluck('id');
             $pic_1 = explode(',', $pic);
+            // find admin
             $admin = [1, 9];
+
             $access = $pic->merge($team)->merge($admin);
-            // dd();
+            // dd($access->toArray());
+
             return view('project.task', compact('project', 'access'));
         } else {
             abort(404);

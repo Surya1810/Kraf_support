@@ -28,7 +28,16 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-outline rounded-kraf card-orange">
-                        <div class="card-body"></div>
+                        {{-- <div class="card-header"></div> --}}
+                        <div class="card-body">
+                            <div class="col-2">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

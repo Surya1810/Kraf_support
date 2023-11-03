@@ -103,7 +103,6 @@
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('assets/adminLTE/plugins/toastr/toastr.min.js') }}"></script>
 
     <script type="text/javascript">
         $(function() {
@@ -148,21 +147,5 @@
                 }
             })
         }
-
-
-        @if (session('pesan'))
-            @switch(session('level-alert'))
-                @case('alert-success')
-                toastr.success("{{ Session::get('pesan') }}", 'Success');
-                @break
-
-                @case('alert-danger')
-                toastr.error("{{ Session::get('pesan') }}", 'Error');
-                @break
-
-                @default
-                toastr.info('test', 'info');
-            @endswitch
-        @endif
     </script>
 @endpush

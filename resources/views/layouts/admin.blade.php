@@ -53,7 +53,7 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom-0">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -246,6 +246,9 @@
     <script src="{{ asset('assets/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('assets/adminLTE/plugins/select2/js/select2.full.min.js') }}"></script>
+    <!-- Toastr -->
+    <script src="{{ asset('assets/adminLTE/plugins/toastr/toastr.min.js') }}"></script>
+
 
     @stack('scripts')
 
@@ -270,6 +273,7 @@
             }
         }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
     </script>
+
     <!-- Sweetalert2 -->
     <script>
         const Toast = Swal.mixin({
@@ -280,9 +284,55 @@
                 popup: 'colored-toast'
             },
             showConfirmButton: false,
-            timer: 1500,
+            timer: 5000,
             timerProgressBar: true
         })
+
+        @if (session('pesan'))
+            @switch(session('level-alert'))
+                @case('alert-success')
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ Session::get('pesan') }}'
+                })
+                @break
+
+                @case('alert-danger')
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ Session::get('pesan') }}'
+                })
+                @break
+
+                @case('alert-warning')
+                Toast.fire({
+                    icon: 'warning',
+                    title: '{{ Session::get('pesan') }}'
+                })
+                @break
+
+                @case('alert-question')
+                Toast.fire({
+                    icon: 'question',
+                    title: '{{ Session::get('pesan') }}'
+                })
+                @break
+
+                @default
+                Toast.fire({
+                    icon: 'info',
+                    title: '{{ Session::get('pesan') }}'
+                })
+            @endswitch
+        @endif
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ $error }}'
+                })
+            @endforeach
+        @endif
     </script>
 </body>
 

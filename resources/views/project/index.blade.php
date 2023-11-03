@@ -52,31 +52,28 @@
                             <table id="projectTable" class="table table-bordered text-nowrap">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 2%">
+                                        <th style="width: 5%">
                                             Code
                                         </th>
-                                        <th style="width: 35%">
+                                        <th style="width: 50%">
                                             Project Name
                                         </th>
-                                        <th style="width: 13%">
+                                        {{-- <th style="width: 13%">
                                             Created at
+                                        </th> --}}
+                                        <th style="width: 18%">
+                                            Progress
                                         </th>
-                                        <th style="width: 13%">
+                                        <th style="width: 10%">
                                             Due Date
                                         </th>
-                                        {{-- <th style="width: 10%">
-                                                PIC
-                                            </th>
-                                            <th style="width: 20%">
-                                                Team Members
-                                            </th> --}}
-                                        <th style="width: 10%">
+                                        <th style="width: 5%">
                                             Status
                                         </th>
-                                        <th style="width: 10%">
+                                        <th style="width: 5">
                                             Urgency
                                         </th>
-                                        <th style="width: 20%">Action</th>
+                                        <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,30 +81,28 @@
                                         <tr>
                                             <td>{{ $project->kode }}</td>
                                             <td class="text-wrap">{{ $project->name }}</td>
-                                            <td>{{ $project->created_at->toFormattedDateString('d/m/y') }}</td>
-                                            @if ($project->deadline->toFormattedDateString('d/m/y') == $now)
-                                                <td class="text-danger">
-                                                    <strong>{{ $project->deadline->toFormattedDateString('d/m/y') }}</strong>
+                                            <td>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-success-2" role="progressbar"
+                                                        aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"
+                                                        style="width: 57%">
+                                                    </div>
+                                                </div>
+                                                <small>
+                                                    57% Complete
+                                                </small>
+                                            </td>
+                                            @if ($project->deadline->toFormattedDateString('d/m/y') == $today)
+                                                <td bgcolor="ea9999">
+                                                    {{ $project->deadline->toFormattedDateString('d/m/y') }}
+                                                </td>
+                                            @elseif ($project->deadline->diffInDays($today) <= '7')
+                                                <td bgcolor="ffe599" class="text-black">
+                                                    {{ $project->deadline->toFormattedDateString('d/m/y') }}
                                                 </td>
                                             @else
                                                 <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
                                             @endif
-                                            {{-- <td>
-                                                    <span class="badge badge-warning">
-                                                        {{ $project->pic }}
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    @php
-                                                        $assisten = explode(',', $project->assisten);
-                                                    @endphp
-
-                                                    @foreach ($assisten as $user)
-                                                        <span class="badge badge-secondary">
-                                                            {{ $user }}
-                                                        </span>
-                                                    @endforeach
-                                                </td> --}}
                                             <td class="text-center">
                                                 @if ($project->status === 'Finished')
                                                     <span class="badge badge-success">
@@ -142,15 +137,6 @@
                                                     </span>
                                                 @endif
                                             </td>
-                                            {{-- <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-                              </div>
-                          </div>
-                          <small>
-                              57% Complete
-                          </small>
-                      </td> --}}
                                             <td class="text-center">
                                                 @if (auth()->user()->id == 1 || auth()->user()->id == 9)
                                                     <a class="btn btn-sm btn-info rounded-kraf"
@@ -206,7 +192,6 @@
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ asset('assets/adminLTE/plugins/toastr/toastr.min.js') }}"></script>
 
     <script type="text/javascript">
         $(function() {
@@ -251,21 +236,5 @@
                 }
             })
         }
-
-
-        @if (session('pesan'))
-            @switch(session('level-alert'))
-                @case('alert-success')
-                toastr.success("{{ Session::get('pesan') }}", 'Success');
-                @break
-
-                @case('alert-danger')
-                toastr.error("{{ Session::get('pesan') }}", 'Error');
-                @break
-
-                @default
-                toastr.info('test', 'info');
-            @endswitch
-        @endif
     </script>
 @endpush
