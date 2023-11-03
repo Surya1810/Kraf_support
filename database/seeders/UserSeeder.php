@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Super Admin',
+            'username' => 'Super Admin',
             'email' => 'hi@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -26,7 +27,8 @@ class UserSeeder extends Seeder
             'role_id' => '1',
             'position_id' => '1',
             'department_id' => '1',
-            'name' => 'Trendy Cayous',
+            'name' => 'Trendy Cayous, S,Kom.',
+            'username' => 'Trendy',
             'email' => 'trendy@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Alfazri',
+            'username' => 'Fajri',
             'email' => 'alfazri@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -45,6 +48,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Surya Dinarta Halim',
+            'username' => 'Surya',
             'email' => 'surya@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -54,6 +58,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Iqbal Yusra Karim',
+            'username' => 'Iqbal',
             'email' => 'iqbalyk@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -62,7 +67,8 @@ class UserSeeder extends Seeder
             'role_id' => '1',
             'position_id' => '1',
             'department_id' => '1',
-            'name' => 'Fadjar',
+            'name' => 'Muhammad Fadjar Maulana',
+            'username' => 'Fadjar',
             'email' => 'fadjar@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -72,6 +78,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Muhammad Ilham',
+            'username' => 'Ilham',
             'email' => 'ilham@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -80,7 +87,8 @@ class UserSeeder extends Seeder
             'role_id' => '1',
             'position_id' => '1',
             'department_id' => '1',
-            'name' => 'Agus Setianto',
+            'name' => 'Agus Setiyanto',
+            'username' => 'Thio',
             'email' => 'thio@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -89,7 +97,8 @@ class UserSeeder extends Seeder
             'role_id' => '1',
             'position_id' => '1',
             'department_id' => '1',
-            'name' => 'Enza',
+            'name' => 'Encep Zainul Syah',
+            'username' => 'Enza',
             'email' => 'enza@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -98,7 +107,8 @@ class UserSeeder extends Seeder
             'role_id' => '1',
             'position_id' => '1',
             'department_id' => '1',
-            'name' => 'Irpan',
+            'name' => 'Irpan Taufik Rusmana',
+            'username' => 'Irpan',
             'email' => 'irpan@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'
@@ -108,6 +118,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Aris Resmono',
+            'username' => 'Aris',
             'email' => 'aris@madebykraf.com',
             'password' => bcrypt('password'),
             'level' => '1'

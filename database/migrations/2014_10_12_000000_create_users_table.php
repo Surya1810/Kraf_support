@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('position_id');
             $table->integer('department_id');
             $table->string('name');
+            $table->string('username');
             $table->string('email')->unique();
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -5,6 +5,7 @@ use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/project/task/{kode}', [ProjectController::class, 'task'])->name('project.task');
     Route::get('/project/review/{kode}', [ProjectController::class, 'review'])->name('project.review');
     Route::post('/project/done/{id}', [ProjectController::class, 'done'])->name('project.done');
+
+    //Task Management
+    Route::resource('task', TaskController::class)->except([
+        'store'
+    ]);
+    Route::post('/task/{id}', [TaskController::class, 'store'])->name('task.store');
+    Route::get('/task/status/{id}', [TaskController::class, 'status'])->name('task.status');
 
     // Agent
     Route::resource('agent', AgentController::class);

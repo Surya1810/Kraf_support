@@ -60,7 +60,7 @@
                                 <div class="tab-pane fade show active" id="project" role="tabpanel"
                                     aria-labelledby="tabs_task">
                                     <h5>Project - <strong>{{ $project->name }}</strong></h5>
-                                    <table id="taskTable" class="table table-bordered text-nowrap">
+                                    <table id="taskTable" class="table table-bordered">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th style="width: 5%" class="sort">
@@ -75,51 +75,69 @@
                                                 <th style="width: 10%">
                                                     Attachment
                                                 </th>
-                                                <th style="width: 10%">
+                                                <th style="width: 5%">
                                                     Status
                                                 </th>
                                                 <th style="width: 10%">
                                                     Info
                                                 </th>
                                                 @if (in_array(auth()->user()->id, $access->toArray()))
-                                                    <th style="width: 10%">Action</th>
+                                                    <th style="width: 20%">Action</th>
                                                 @endif
                                             </tr>
                                         </thead>
                                         <tbody class="text-sm">
-                                            {{-- @foreach ($tasks as $task) --}}
-                                            <tr>
-                                                <td class="text-center">1</td>
-                                                <td>Membuat Semua Baik Baik Saja</td>
-                                                <td>Membuat Semua Baik Baik Saja</td>
-                                                <td class="text-center"><strong><a href="#"
-                                                            target="_blank"></a><u>Attachment</u></strong>
-                                                </td>
-                                                <td class="text-center">
-                                                    <span class="badge badge-success">Done</span>
-                                                    <span class="badge badge-danger">Undone</span>
-                                                </td>
-                                                <td>
-                                                    <a>Herman</a><br><small class="text-muted">01/01/2019</small>
-                                                </td>
-                                                @if (in_array(auth()->user()->id, $access->toArray()))
-                                                    <td>
-                                                        <button class="btn btn-xs btn-success rounded-kraf">
-                                                            Done
-                                                        </button>
-                                                        {{-- <button class="btn btn-xs btn-danger rounded-kraf">
-                                                        Undone
-                                                    </button> --}}
-                                                        <button class="btn btn-xs btn-warning rounded-kraf">
-                                                            Edit
-                                                        </button>
-                                                        <button class="btn btn-xs btn-danger rounded-kraf">
-                                                            Delete
-                                                        </button>
+                                            @foreach ($tasks as $key => $task)
+                                                <tr>
+                                                    <td class="text-center">{{ $key + 1 }}</td>
+                                                    <td>{{ $task->title }}</td>
+                                                    <td>{{ $task->desc }}</td>
+                                                    <td class="text-center text-sm"><a href="{{ $task->attachment }}"
+                                                            target="_blank"><strong><u>{{ $task->attachment }}</u></strong></a>
                                                     </td>
-                                                @endif
-                                            </tr>
-                                            {{-- @endforeach --}}
+                                                    <td class="text-center">
+                                                        @if ($task->status == 'Done')
+                                                            <span class="badge badge-success">Done</span>
+                                                        @else
+                                                            <span class="badge badge-danger">Undone</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a>{{ $task->by }}</a><br><small
+                                                            class="text-muted">{{ $task->updated_at->toFormattedDateString('d/m/y') }}</small>
+                                                    </td>
+                                                    @if (in_array(auth()->user()->id, $access->toArray()))
+                                                        <td class="text-center">
+                                                            @if ($task->status == 'Undone')
+                                                                <a href="{{ route('task.status', $task->id) }}"
+                                                                    class="btn btn-xs btn-success rounded-kraf text-sm">
+                                                                    Done
+                                                                </a>
+                                                            @else
+                                                                <a href="{{ route('task.status', $task->id) }}"
+                                                                    class="btn btn-xs btn-danger rounded-kraf text-sm">
+                                                                    Undone
+                                                                </a>
+                                                            @endif
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-warning rounded-kraf"
+                                                                data-toggle="modal"
+                                                                data-target="#editStepModal{{ $task->id }}">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-danger rounded-kraf"
+                                                                onclick="deleteTask({{ $task->id }})"><i
+                                                                    class="fas fa-trash"></i></button>
+                                                            <form id="delete-form-{{ $task->id }}"
+                                                                action="{{ route('task.destroy', $task->id) }}"
+                                                                method="POST" style="display: none;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                        </td>
+                                                    @endif
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -134,8 +152,8 @@
                             @endif
 
                             @if (auth()->user()->id == 1 || auth()->user()->id == 9)
-                                <button type="button" class="btn btn-success rounded-kraf float-right" data-toggle="modal"
-                                    data-target="#finishModal">
+                                <button type="button" class="btn btn-success rounded-kraf float-right"
+                                    data-toggle="modal" data-target="#finishModal">
                                     <i class="fas fa-check"></i>
                                     Finish Project
                                 </button>
@@ -156,7 +174,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('task.store', $project->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -191,7 +209,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-kraf rounded-kraf">Add</button>
+                        <button type="submit" class="btn btn-kraf rounded-kraf">Add Step</button>
                     </div>
                 </form>
             </div>
@@ -231,6 +249,62 @@
             </div>
         </div>
     </div>
+
+    @foreach ($tasks as $task)
+        <!-- Modal Edit Step-->
+        <div class="modal fade" id="editStepModal{{ $task->id }}" tabindex="-1"
+            aria-labelledby="editStepModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editStepModalLabel">Edit Step</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('task.update', $task->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="title" class="mb-0 form-label col-form-label-sm">Title</label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    id="title" name="title" placeholder="Enter step title"
+                                    value="{{ $task->title }}">
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <div class="form-group">
+                                    <label for="desc"
+                                        class="mt-3 mb-0 form-label col-form-label-sm">Description</label>
+                                    <textarea class="form-control @error('desc') is-invalid @enderror" rows="4"
+                                        placeholder="Enter step description..." id="desc" name="desc">{{ $task->desc }}</textarea>
+                                    @error('desc')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <label for="attachment" class="mb-0 form-label col-form-label-sm">Attachment</label>
+                                <input type="text" class="form-control @error('attachment') is-invalid @enderror"
+                                    id="attachment" name="attachment" placeholder="Enter step attachment"
+                                    value="{{ $task->attachment }}<">
+                                @error('attachment')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-kraf rounded-kraf">Add Step</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
 
 @push('scripts')
@@ -263,10 +337,36 @@
                 });
             });
         });
+
+        function deleteTask(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-' + id).submit();
+                } else if (
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your data is safe !',
+                        'error'
+                    )
+                }
+            })
+        }
     </script>
     <script type="text/javascript">
         @if (count($errors) > 0)
-            $('#finishModal').modal('show');
+            $('#addStepModal').modal('show');
         @endif
+        // @if (count($errors) > 0)
+        //     $('#finishModal').modal('show');
+        // @endif
     </script>
 @endpush

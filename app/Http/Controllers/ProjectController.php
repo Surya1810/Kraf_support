@@ -150,9 +150,12 @@ class ProjectController extends Controller
             $admin = [1, 9];
 
             $access = $pic->merge($team)->merge($admin);
-            // dd($access->toArray());
 
-            return view('project.task', compact('project', 'access'));
+            // Task
+            $tasks = $project->tasks;
+            // dd($tasks);
+
+            return view('project.task', compact('project', 'access', 'tasks'));
         } else {
             abort(404);
         }
