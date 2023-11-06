@@ -46,10 +46,11 @@
 
 </head>
 
-<body style="background-color: #000;">
+<body>
     <main>
         @yield('content')
     </main>
+
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     @stack('scripts')

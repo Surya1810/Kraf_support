@@ -22,6 +22,25 @@
     box-shadow: 0 0 0 0.2rem rgba(241, 93, 75, 0.5);
 }
 
+/* Login Page */
+.background {
+    background-image: url(/assets/img/background/3_alt.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #000000;
+}
+.login_card {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    border-color: rgba(241, 93, 75, 0.75);
+    box-shadow: 0 0 0 0.35rem rgba(241, 93, 75, 0.35);
+}
+
+/* Asset */
 .btn-outline-kraf {
     border-color: rgba(241, 93, 75, 0.75);
     color: #f15d4b;

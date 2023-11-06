@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -64,6 +65,9 @@ Route::middleware('auth')->group(function () {
 
     //Network
     Route::resource('network', NetworkController::class);
+
+    //Blog
+    Route::resource('blog', BlogController::class);
 });
 
 Auth::routes();
