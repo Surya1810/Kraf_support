@@ -32,41 +32,84 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-kraf">
+                        <div class="inner">
+                            <h3>{{ $blogs->count() }}</h3>
+
+                            <p>Our Content</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="{{ route('project.index') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12">
                     <div class="card card-outline rounded-kraf card-orange">
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <h3 class="card-title">Network Chart</h3>
+                                    <h3 class="card-title">Content List</h3>
                                 </div>
+                                {{-- @if (auth()->user()->id == 1 || auth()->user()->id == 9) --}}
+                                <div class="col-6">
+                                    <a href="{{ route('blog.create') }}"
+                                        class="btn btn-sm btn-kraf rounded-kraf float-right">Create
+                                        Content</a>
+                                </div>
+                                {{-- @endif --}}
                             </div>
                         </div>
                         <div class="card-body table-responsive">
-                            <table id="networkTable" class="table table-bordered text-nowrap">
+                            <table id="networkTable" class="table table-bordered">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 5%">
-                                            Nama File
+                                        <th style="width: 10%">
+                                            Picture
                                         </th>
-                                        <th style="width: 5%">
-                                            Link File
+                                        <th style="width: 30%">
+                                            Title
+                                        </th>
+                                        <th style="width: 15%">
+                                            Info
+                                        </th>
+                                        <th style="width: 15%">
+                                            Link
+                                        </th>
+                                        <th style="width: 10%">
+                                            Created by
+                                        </th>
+                                        <th style="width: 10%">
+                                            Status
                                         </th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        {{-- @foreach ($networks as $data) --}}
-                                        <td>
-                                            {{-- {{ $data->name }} --}}
-                                        </td>
-                                        <td>
-                                            {{ asset('storage/network/1_Agen_Nomor.pdf') }}
-                                        </td>
-                                        <td>
+                                        @foreach ($blogs as $data)
+                                            <td>
+                                                {{ $data->title }}
+                                            </td>
+                                            <td>
+                                                Category
+                                                {{ $data->category }}
+                                                Tags
+                                            </td>
+                                            <td>
 
-                                        </td>
-                                        {{-- @endforeach --}}
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                        @endforeach
                                     </tr>
                                 </tbody>
                             </table>

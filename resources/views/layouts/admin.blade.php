@@ -97,9 +97,9 @@
         </nav>
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar  main-sidebar-custom sidebar-dark-orange elevation-4">
+        <aside class="main-sidebar main-sidebar-custom sidebar-dark-orange elevation-4 bg-dark">
             <!-- Brand Logo -->
-            <a href="{{ route('dashboard') }}" class="brand-link logo-switch">
+            <a href="{{ route('dashboard') }}" class="brand-link logo-switch border-0 shadow-bottom ">
                 <img src="{{ asset('assets/logo/kraf-ico.png') }}" alt="Kraf_logo"
                     class="brand-image-xl logo-xs text-sm">
                 <img src="{{ asset('assets/logo/logo-light.png') }}" alt="Kraf_logo"
@@ -107,7 +107,7 @@
             </a>
 
             <!-- Sidebar -->
-            <div class="sidebar">
+            <div class="sidebar text-sm">
                 <!-- Sidebar Menu -->
                 <nav class="mt-3">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-child-indent nav-collapse-hide-child"
@@ -242,7 +242,7 @@
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
-            <div class="sidebar-custom">
+            <div class="sidebar-custom border-dark">
                 <a href="{{ route('profile.edit') }}" class="btn btn-link link-kraf"><i
                         class="nav-icon fa-solid fa-gear"></i></a>
             </div>

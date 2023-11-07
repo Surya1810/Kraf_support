@@ -5,6 +5,15 @@
 @endsection
 
 @push('css')
+    <script src="https://cdn.tiny.cloud/1/s7h48tmpx44zenjzuehfwzluynm7n5cv1ty3v2u1suxy4vqv/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#creative_brief',
+            plugins: 'powerpaste advcode table lists checklist',
+            toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table | alignleft aligncenter alignright alignjustify | outdent indent'
+        });
+    </script>
 @endpush
 
 @section('content')
@@ -26,9 +35,9 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="card rounded-kraf card-outline card-orange">
+                <div class="card rounded-kraf card-outline card-orange w-100">
                     <div class="card-header">
                         <h3 class="card-title">Project Create</h3>
                     </div>
@@ -37,7 +46,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="name">Project name</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -50,7 +59,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="client">Client name</label>
                                         <input type="text" class="form-control @error('client') is-invalid @enderror"
@@ -63,7 +72,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="creative_brief">Creative Brief</label>
                                         <textarea class="form-control @error('creative_brief') is-invalid @enderror" rows="4"
@@ -75,7 +84,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="pic">PIC</label>
                                         <select class="form-control pic select2-orange is-invalid"
@@ -95,7 +104,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="assisten">Team Members</label>
                                         <div class="select2-orange">
@@ -124,7 +133,7 @@
                                 <div class="col-12">
                                     <hr>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-lg-4 col-6">
                                     <div class="form-group">
                                         <label for="status">Status</label>
                                         <select
@@ -149,7 +158,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-lg-4 col-6">
                                     <div class="form-group">
                                         <label for="urgency">Urgency</label>
                                         <select
@@ -171,7 +180,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-lg-4 col-6">
                                     <div class="form-group">
                                         <label for="deadline">Due Date</label>
 

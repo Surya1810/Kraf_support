@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'username' => 'Super Admin',
             'email' => 'hi@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('123'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'name' => 'Trendy Cayous, S,Kom.',
             'username' => 'Trendy',
             'email' => 'trendy@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'name' => 'Alfazri',
             'username' => 'Fajri',
             'email' => 'alfazri@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             'name' => 'Surya Dinarta Halim',
             'username' => 'Surya',
             'email' => 'surya@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
             'name' => 'Iqbal Yusra Karim',
             'username' => 'Iqbal',
             'email' => 'iqbalyk@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -70,7 +70,7 @@ class UserSeeder extends Seeder
             'name' => 'Muhammad Fadjar Maulana',
             'username' => 'Fadjar',
             'email' => 'fadjar@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
             'name' => 'Muhammad Ilham',
             'username' => 'Ilham',
             'email' => 'ilham@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -90,7 +90,7 @@ class UserSeeder extends Seeder
             'name' => 'Agus Setiyanto',
             'username' => 'Thio',
             'email' => 'thio@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
             'name' => 'Encep Zainul Syah',
             'username' => 'Enza',
             'email' => 'enza@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -110,7 +110,7 @@ class UserSeeder extends Seeder
             'name' => 'Irpan Taufik Rusmana',
             'username' => 'Irpan',
             'email' => 'irpan@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
         $admin = User::create([
@@ -120,7 +120,7 @@ class UserSeeder extends Seeder
             'name' => 'Aris Resmono',
             'username' => 'Aris',
             'email' => 'aris@madebykraf.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);
     }

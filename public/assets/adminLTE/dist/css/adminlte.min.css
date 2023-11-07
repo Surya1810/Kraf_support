@@ -10237,7 +10237,7 @@ body:not(.layout-fixed).layout-navbar-fixed.text-sm
     .wrapper
     .sidebar-dark-orange
     .brand-link:not([class*="navbar"]) {
-    background-color: #343a40;
+    background-color: #282828;
 }
 .layout-navbar-fixed
     .wrapper
@@ -12766,8 +12766,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 .sidebar-dark-orange .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-orange .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: #f15d4b;
-    color: #fff;
+    background-color: #1f1f1f !important;
+    color: #f15d4b !important;
 }
 .sidebar-dark-orange .nav-sidebar.nav-legacy > .nav-item > .nav-link.active,
 .sidebar-light-orange .nav-sidebar.nav-legacy > .nav-item > .nav-link.active {
@@ -14170,8 +14170,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 .dark-mode .sidebar-dark-orange .nav-sidebar > .nav-item > .nav-link.active,
 .dark-mode .sidebar-light-orange .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: #f15d4b;
-    color: #fff;
+    background-color: #1f1f1f;
+    color: #f15d4b;
 }
 .dark-mode
     .sidebar-dark-orange
@@ -14183,7 +14183,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
     .nav-sidebar.nav-legacy
     > .nav-item
     > .nav-link.active {
-    border-color: #fd7e14;
+    border-color: #f15d4b;
 }
 .dark-mode .sidebar-dark-yellow .nav-sidebar > .nav-item > .nav-link.active,
 .dark-mode .sidebar-light-yellow .nav-sidebar > .nav-item > .nav-link.active {

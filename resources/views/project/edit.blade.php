@@ -5,6 +5,15 @@
 @endsection
 
 @push('css')
+    <script src="https://cdn.tiny.cloud/1/s7h48tmpx44zenjzuehfwzluynm7n5cv1ty3v2u1suxy4vqv/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#creative_brief',
+            plugins: 'powerpaste advcode table lists checklist',
+            toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table | alignleft aligncenter alignright alignjustify | outdent indent'
+        });
+    </script>
 @endpush
 
 @section('content')
@@ -35,6 +44,8 @@
                     <form action="{{ route('project.update', $project->id) }}" method="POST" enctype="multipart/form-data"
                         autocomplete="off">
                         @csrf
+                        @method('PUT')
+
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-6">
@@ -67,7 +78,7 @@
                                     <div class="form-group">
                                         <label for="creative_brief">Creative Brief</label>
                                         <textarea class="form-control @error('creative_brief') is-invalid @enderror" rows="4"
-                                            placeholder="Enter creative brief..." id="creative_brief" name="creative_brief">{{ $project->creative_brief }}</textarea>
+                                            placeholder="Enter creative brief..." id="creative_brief" name="creative_brief">{!! html_entity_decode($project->creative_brief) !!}</textarea>
                                         @error('creative_brief')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -82,9 +93,8 @@
                                             data-dropdown-css-class="select2-orange" style="width: 100%;" id="pic"
                                             name="pic">
                                             @foreach ($users as $user)
-                                                <option value="{{ $user->id }}"
-                                                    {{ $project->pic == $user->id ? ' selected' : '' }}>
-                                                    {{ $user->username }}</option>
+                                                <option {{ $project->pic == $user->id ? 'selected' : '' }}
+                                                    value="{{ $user->id }}">{{ $user->username }}</option>
                                             @endforeach
                                         </select>
                                         @error('pic')
@@ -102,13 +112,18 @@
                                                 class="form-control team select2 @error('assisten') is-invalid @enderror"
                                                 multiple="multiple" data-dropdown-css-class="select2-orange"
                                                 style="width: 100%;" id="assisten" name="assisten[]">
+                                                @php
+                                                    $assisten = explode(',', $project->assisten);
+                                                @endphp
                                                 @foreach ($users as $user)
-                                                    @if (old('assisten'))
-                                                        <option value="{{ $user->id }}"
-                                                            {{ in_array($user->id, old('assisten')) ? 'selected' : '' }}>
-                                                            {{ $user->name }}</option>
+                                                    @if (count($assisten) > 1)
+                                                        <option
+                                                            @foreach ($assisten as $team)
+                                                    {{ $team == $user->id ? 'selected' : '' }} @endforeach
+                                                            value="{{ $user->id }}">{{ $user->username }}</option>
                                                     @else
-                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                        <option {{ $project->assisten == $user->id ? 'selected' : '' }}
+                                                            value="{{ $user->id }}">{{ $user->username }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>

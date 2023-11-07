@@ -15,10 +15,14 @@ return new class extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('category');
+            $table->string('tag');
+            $table->string('slug')->unique();
             $table->string('image')->default('default.png');
             $table->text('body');
             $table->integer('view_count')->default(0);
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(false);
+            $table->bigInteger('user_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

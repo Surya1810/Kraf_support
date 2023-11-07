@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-primary card-outline card-outline-tabs rounded-kraf card-orange">
+                    <div class="card card-primary card-outline card-outline-tabs rounded-kraf card-orange" >
                         <div class="card-header p-0 border-bottom-0">
                             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                                 <li class="nav-item">
@@ -74,33 +74,57 @@
                                         </div>
                                     </div> --}}
                                     <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="card">
+                                        <div class="col-lg-3">
+                                            <div class="card rounded-kraf">
                                                 <div class="card-body">
-                                                    <h4>Project Name</h4>
+                                                    <h5>Project Name</h5>
                                                     {{ $project->name }}
-                                                    <h4>Client Name</h4>
+                                                    <hr>
+                                                    <h5>Client Name</h5>
                                                     {{ $project->client }}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
-                                            <div class="card bg-kraf">
+                                        <div class="col-lg-3">
+                                            <div class="card rounded-kraf">
                                                 <div class="card-body">
-                                                    <h4>Creative Brief</h4>
-                                                    {{ $project->creative_brief }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card bg-kraf">
-                                                <div class="card-body">
-                                                    <h4>PIC</h4>
-                                                    {{ $pic->username }}
-                                                    <h4>Team</h4>
+                                                    <h5>PIC</h5>
+                                                    <span class="badge">{{ $pic->username }}</span>
+                                                    <hr>
+                                                    <h5>Team</h5>
                                                     @foreach ($team as $data)
                                                         {{ $data->username }}
                                                     @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="card rounded-kraf">
+                                                <div class="card-body">
+                                                    <h5>Urgency</h5>
+                                                    {{ $project->urgency }}
+                                                    <hr>
+                                                    <h5>Status</h5>
+                                                    {{ $project->status }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="card rounded-kraf">
+                                                <div class="card-body">
+                                                    <h5>Created at</h5>
+                                                    {{ $project->created_at->toFormattedDateString('d/m/y') }}
+                                                    <hr>
+                                                    <h5>Deadline</h5>
+                                                    {{ $project->deadline->toFormattedDateString('d/m/y') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="card rounded-kraf">
+                                                <div class="card-body">
+                                                    <h4>Creative Brief</h4>
+                                                    {!! html_entity_decode($project->creative_brief) !!}
                                                 </div>
                                             </div>
                                         </div>

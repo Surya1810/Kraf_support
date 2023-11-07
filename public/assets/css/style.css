@@ -40,6 +40,17 @@
     box-shadow: 0 0 0 0.35rem rgba(241, 93, 75, 0.35);
 }
 
+/* Sidebar */
+.bg-dark {
+    background-color: #282828 !important;
+}
+.border-dark {
+    border-color: #000000 !important;
+}
+.shadow-bottom {
+    box-shadow: 0 4px 2px -1px rgba(28, 28, 28, 0.5);
+}
+
 /* Asset */
 .btn-outline-kraf {
     border-color: rgba(241, 93, 75, 0.75);
@@ -75,6 +86,11 @@
     color: #ef3833;
 }
 .bg-kraf {
+    background-color: #f15d4b;
+    color: #fff;
+}
+
+.bg-kraf-alt {
     background-color: #f15d4b;
     color: #fff;
 }

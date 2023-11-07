@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('kode');
             $table->string('client');
             $table->string('name');
-            $table->string('creative_brief');
+            $table->text('creative_brief');
             $table->string('status');
             $table->string('pic');
             $table->string('assisten');
