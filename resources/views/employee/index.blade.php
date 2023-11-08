@@ -41,63 +41,61 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="card-body table-responsive">
-                                <table id="employeeTable" class="table table-bordered text-nowrap text-center">
-                                    <thead class="table-dark">
+                        <div class="card-body table-responsive">
+                            <table id="employeeTable" class="table table-bordered text-nowrap text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 5%">
+                                            ID
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Signature
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Department
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <th style="width: 5%">
-                                                ID
-                                            </th>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Email
-                                            </th>
-                                            <th>
-                                                Signature
-                                            </th>
-                                            <th>
-                                                Status
-                                            </th>
-                                            <th>
-                                                Department
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                @if ($user->sign === null)
+                                                    <span class="badge badge-dark">None</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($user->is_active === 1)
+                                                    Active
+                                                @else
+                                                    Disabled
+                                                @endif
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($users as $user)
-                                            <tr>
-                                                <td>{{ $user->id }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>
-                                                    @if ($user->sign === null)
-                                                        <span class="badge badge-dark">None</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($user->is_active === 1)
-                                                        Active
-                                                    @else
-                                                        Disabled
-                                                    @endif
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                                <td>
-
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

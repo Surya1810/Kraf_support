@@ -41,57 +41,55 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="card-body table-responsive">
-                                <table id="agentTable" class="table table-bordered text-nowrap text-center">
-                                    <thead class="table-dark">
+                        <div class="card-body table-responsive">
+                            <table id="agentTable" class="table table-bordered text-nowrap text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 5%">
+                                            ID
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Signature
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($agents as $agent)
                                         <tr>
-                                            <th style="width: 5%">
-                                                ID
-                                            </th>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Email
-                                            </th>
-                                            <th>
-                                                Signature
-                                            </th>
-                                            <th>
-                                                Status
-                                            </th>
-                                            <th>
-                                                Action
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($agents as $agent)
-                                            <tr>
-                                                <td>{{ $agent->id }}</td>
-                                                <td>{{ $agent->name }}</td>
-                                                <td>{{ $agent->email }}</td>
-                                                <td>
-                                                    @if ($agent->sign === null)
-                                                        <span class="badge badge-dark">None</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($agent->is_active === 1)
-                                                        Active
-                                                    @else
-                                                        Disabled
-                                                    @endif
-                                                </td>
-                                                <td>
+                                            <td>{{ $agent->id }}</td>
+                                            <td>{{ $agent->name }}</td>
+                                            <td>{{ $agent->email }}</td>
+                                            <td>
+                                                @if ($agent->sign === null)
+                                                    <span class="badge badge-dark">None</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($agent->is_active === 1)
+                                                    Active
+                                                @else
+                                                    Disabled
+                                                @endif
+                                            </td>
+                                            <td>
 
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
