@@ -5,6 +5,15 @@
 @endsection
 
 @push('css')
+    <script src="https://cdn.tiny.cloud/1/s7h48tmpx44zenjzuehfwzluynm7n5cv1ty3v2u1suxy4vqv/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#body',
+            plugins: 'powerpaste advcode table lists checklist',
+            toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table | alignleft aligncenter alignright alignjustify | outdent indent'
+        });
+    </script>
 @endpush
 
 @section('content')
@@ -57,13 +66,10 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="creative_brief">Content</label>
-                                            <textarea class="form-control @error('creative_brief') is-invalid @enderror" rows="4"
-                                                placeholder="Enter creative brief..." id="creative_brief" name="creative_brief">{{ old('creative_brief') }}</textarea>
-                                            <form method="post">
-                                                <textarea id="myeditorinstance">Hello, World!</textarea>
-                                            </form>
-                                            @error('creative_brief')
+                                            <label for="body">Content</label>
+                                            <textarea class="form-control @error('body') is-invalid @enderror" rows="4" placeholder="Enter creative brief..."
+                                                id="body" name="body">{{ old('body') }}</textarea>
+                                            @error('body')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

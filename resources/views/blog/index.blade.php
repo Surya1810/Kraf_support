@@ -46,6 +46,35 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-kraf">
+                        <div class="inner">
+                            <h3>{{ $blogs->count() }}</h3>
+
+                            <p>Our Published Content</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="{{ route('project.index') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-kraf">
+                        <div class="inner">
+                            <h3>{{ $blogs->count() }}</h3>
+
+                            <p>Our Inactive Content</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="{{ route('project.index') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
             </div>
             <div class="row">
                 <div class="col-12">
@@ -69,7 +98,7 @@
                                 <thead class="table-dark">
                                     <tr>
                                         <th style="width: 10%">
-                                            Picture
+                                            Thumbnail
                                         </th>
                                         <th style="width: 30%">
                                             Title

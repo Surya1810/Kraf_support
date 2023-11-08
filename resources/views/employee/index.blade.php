@@ -62,6 +62,9 @@
                                                 Status
                                             </th>
                                             <th>
+                                                Department
+                                            </th>
+                                            <th>
                                                 Action
                                             </th>
                                         </tr>
@@ -83,6 +86,9 @@
                                                     @else
                                                         Disabled
                                                     @endif
+                                                </td>
+                                                <td>
+
                                                 </td>
                                                 <td>
 
