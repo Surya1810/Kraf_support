@@ -58,13 +58,13 @@
                                         <th style="width: 50%">
                                             Project Name
                                         </th>
-                                        {{-- <th style="width: 13%">
-                                            Created at
-                                        </th> --}}
                                         <th style="width: 18%">
                                             Progress
                                         </th>
-                                        <th style="width: 10%">
+                                        <th style="width: 5%">
+                                            Start at
+                                        </th>
+                                        <th style="width: 5%">
                                             Due Date
                                         </th>
                                         <th style="width: 5%">
@@ -112,6 +112,7 @@
                                                     @endif
                                                 </small>
                                             </td>
+                                            <td>{{ $project->start->toFormattedDateString('d/m/y') }}</td>
                                             @if ($project->deadline->isPast())
                                                 <td bgcolor="ea9999">
                                                     {{ $project->deadline->toFormattedDateString('d/m/y') }}

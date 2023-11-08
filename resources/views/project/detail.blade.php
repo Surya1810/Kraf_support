@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-primary card-outline card-outline-tabs rounded-kraf card-orange" >
+                    <div class="card card-primary card-outline card-outline-tabs rounded-kraf card-orange">
                         <div class="card-header p-0 border-bottom-0">
                             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                                 <li class="nav-item">
@@ -74,7 +74,7 @@
                                         </div>
                                     </div> --}}
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-5">
                                             <div class="card rounded-kraf">
                                                 <div class="card-body">
                                                     <h5>Project Name</h5>
@@ -89,16 +89,27 @@
                                             <div class="card rounded-kraf">
                                                 <div class="card-body">
                                                     <h5>PIC</h5>
-                                                    <span class="badge">{{ $pic->username }}</span>
+                                                    {{ $pic->username }}
                                                     <hr>
                                                     <h5>Team</h5>
                                                     @foreach ($team as $data)
-                                                        {{ $data->username }}
+                                                        <span class="badge badge-dark">{{ $data->username }}</span>
                                                     @endforeach
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2 col-6">
+                                            <div class="card rounded-kraf">
+                                                <div class="card-body">
+                                                    <h5>Start Date</h5>
+                                                    {{ $project->start->toFormattedDateString('d/m/y') }}
+                                                    <hr>
+                                                    <h5>Due Date</h5>
+                                                    {{ $project->deadline->toFormattedDateString('d/m/y') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-6">
                                             <div class="card rounded-kraf">
                                                 <div class="card-body">
                                                     <h5>Urgency</h5>
@@ -106,17 +117,6 @@
                                                     <hr>
                                                     <h5>Status</h5>
                                                     {{ $project->status }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="card rounded-kraf">
-                                                <div class="card-body">
-                                                    <h5>Created at</h5>
-                                                    {{ $project->created_at->toFormattedDateString('d/m/y') }}
-                                                    <hr>
-                                                    <h5>Deadline</h5>
-                                                    {{ $project->deadline->toFormattedDateString('d/m/y') }}
                                                 </div>
                                             </div>
                                         </div>

@@ -133,7 +133,7 @@
                                 <div class="col-12">
                                     <hr>
                                 </div>
-                                <div class="col-lg-4 col-6">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label for="status">Status</label>
                                         <select
@@ -158,7 +158,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-6">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label for="urgency">Urgency</label>
                                         <select
@@ -180,7 +180,21 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-6">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="start">Start Date</label>
+
+                                        <input type="date" class="form-control @error('start') is-invalid @enderror"
+                                            id="start" name="start" value="{{ old('start') }}">
+
+                                        @error('start')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label for="deadline">Due Date</label>
 

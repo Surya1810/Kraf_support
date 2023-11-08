@@ -14,7 +14,8 @@ class Project extends Model
     use HasFactory, SoftDeletes;
 
     protected $casts = [
-        'deadline' => 'datetime'
+        'deadline' => 'datetime',
+        'start' => 'datetime'
     ];
 
     protected $dates = ['deleted_at'];

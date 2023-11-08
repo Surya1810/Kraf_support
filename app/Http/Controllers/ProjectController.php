@@ -51,6 +51,7 @@ class ProjectController extends Controller
                 'status' => 'bail|required',
                 'urgency' => 'bail|required',
                 'deadline' => 'bail|required',
+                'start' => 'bail|required',
             ]);
 
             $old = session()->getOldInput();
@@ -64,6 +65,7 @@ class ProjectController extends Controller
             $project->status = $request->status;
             $project->urgency = $request->urgency;
             $project->deadline = $request->deadline;
+            $project->start = $request->start;
             $project->assisten = implode(',', $request->assisten);
             $project->save();
 
@@ -111,6 +113,7 @@ class ProjectController extends Controller
                 'status' => 'bail|required',
                 'urgency' => 'bail|required',
                 'deadline' => 'bail|required',
+                'start' => 'bail|required',
             ]);
 
             $project = Project::find($id);
@@ -121,6 +124,7 @@ class ProjectController extends Controller
             $project->status = $request->status;
             $project->urgency = $request->urgency;
             $project->deadline = $request->deadline;
+            $project->start = $request->start;
             $project->assisten = implode(',', $request->assisten);
             $project->update();
 
