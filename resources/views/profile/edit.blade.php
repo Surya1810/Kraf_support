@@ -35,6 +35,7 @@
                                         <form action="{{ route('profile.update', auth()->user()->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            @method('PUT')
                                             <p class="m-0"><strong>Profile Information</strong></p>
                                             <small>Update your accounts profile information and email address.</small><br>
                                             <label class="mt-4 mb-0 form-label col-form-label-sm"
@@ -68,15 +69,15 @@
                                         <form action="{{ route('profile.password', auth()->user()->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            @method('PUT')
                                             <p class="m-0"><strong>Update Password</strong></p>
                                             <small>Ensure your account is using a long, random password to stay
                                                 secure.</small><br>
-                                            <label class="mt-4 mb-0 form-label col-form-label-sm"
-                                                for="current_password">Current
+                                            <label class="mt-4 mb-0 form-label col-form-label-sm" for="old_password">Current
                                                 Password</label>
                                             <div class="input-group mb-3">
-                                                <input type="password" class="form-control" id="current_password"
-                                                    name="current_password" aria-describedby="current_password">
+                                                <input type="password" class="form-control" id="old_password"
+                                                    name="old_password" aria-describedby="old_password">
                                             </div>
                                             <label class="mb-0 form-label col-form-label-sm" for="new_password">New
                                                 Password</label>

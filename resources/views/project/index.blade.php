@@ -62,7 +62,7 @@
                                             Progress
                                         </th>
                                         <th style="width: 5%">
-                                            Start at
+                                            Start Date
                                         </th>
                                         <th style="width: 5%">
                                             Due Date
