@@ -32,46 +32,40 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-3">
                     <div class="small-box bg-kraf">
                         <div class="inner">
                             <h3>{{ $blogs->count() }}</h3>
 
                             <p>Our Content</p>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="{{ route('project.index') }}" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-3">
                     <div class="small-box bg-kraf">
                         <div class="inner">
-                            <h3>{{ $blogs->count() }}</h3>
+                            <h3>{{ $unpublished }}</h3>
 
-                            <p>Our Published Content</p>
+                            <p>Our Pending Content This Month</p>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="{{ route('project.index') }}" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-3">
                     <div class="small-box bg-kraf">
                         <div class="inner">
-                            <h3>{{ $blogs->count() }}</h3>
+                            <h3>{{ $published }}</h3>
 
-                            <p>Our Inactive Content</p>
+                            <p>Our Published Content This Month</p>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="small-box bg-kraf">
+                        <div class="inner">
+                            <h3>{{ $month }}</h3>
+
+                            <p>Our Content This Month</p>
                         </div>
-                        <a href="{{ route('project.index') }}" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
@@ -94,52 +88,98 @@
                             </div>
                         </div>
                         <div class="card-body table-responsive">
-                            <table id="networkTable" class="table table-bordered">
+                            <table id="blogTable" class="table table-bordered">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 10%">
+                                        <th style="width: 15%">
                                             Thumbnail
                                         </th>
                                         <th style="width: 30%">
                                             Title
                                         </th>
-                                        <th style="width: 15%">
-                                            Info
-                                        </th>
-                                        <th style="width: 15%">
-                                            Link
+                                        <th style="width: 10%">
+                                            Category
                                         </th>
                                         <th style="width: 10%">
+                                            Tags
+                                        </th>
+                                        <th style="width: 15%">
                                             Created by
                                         </th>
-                                        <th style="width: 10%">
+                                        <th style="width: 5%">
                                             Status
                                         </th>
-                                        <th style="width: 10%">Action</th>
+                                        <th style="width: 15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        @foreach ($blogs as $data)
+                                    @foreach ($blogs as $data)
+                                        <tr>
                                             <td>
                                                 {{ $data->title }}
                                             </td>
                                             <td>
-                                                Category
+                                                {{ $data->title }}
+                                            </td>
+                                            <td>
                                                 {{ $data->category }}
-                                                Tags
                                             </td>
                                             <td>
-
+                                                @php
+                                                    $tags = explode(',', $data->tag);
+                                                @endphp
+                                                @foreach ($tags as $tag)
+                                                    <span class="badge bg-kraf">{{ $tag }}</span>
+                                                @endforeach
                                             </td>
                                             <td>
-
+                                                <a>{{ $data->user->username }}</a><br><small
+                                                    class="text-muted">{{ $data->updated_at->toFormattedDateString('d/m/y') }}</small>
                                             </td>
                                             <td>
-
+                                                @if ($data->status == true)
+                                                    <span class="badge bg-green">Published</span>
+                                                @else
+                                                    <span class="badge bg-yellow">Pending</span>
+                                                @endif
                                             </td>
-                                        @endforeach
-                                    </tr>
+                                            <td class="text-center">
+                                                @if (auth()->user()->id == 1 || auth()->user()->id == 9)
+                                                    <a class="btn btn-sm btn-success rounded-kraf"
+                                                        href="{{ route('blog.status', $data->id) }}">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <a class="btn btn-sm btn-warning rounded-kraf"
+                                                        href="{{ route('blog.edit', $data->id) }}">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                    @if ($data->status == true)
+                                                        <a class="btn btn-sm btn-info rounded-kraf" href="#"
+                                                            target="_blank">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                        </a>
+                                                    @endif
+                                                    <button class="btn btn-sm btn-danger rounded-kraf"
+                                                        onclick="deleteBlog({{ $data->id }})"><i
+                                                            class="fas fa-trash"></i></button>
+
+                                                    <form id="delete-form-{{ $data->id }}"
+                                                        action="{{ route('blog.destroy', $data->id) }}" method="POST"
+                                                        style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @else
+                                                    @if ($data->status == true)
+                                                        <a class="btn btn-sm btn-info rounded-kraf" href="#">
+                                                            <i class="fa-solid fa-eye"></i>
+                                                            View Post
+                                                        </a>
+                                                    @endif
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -167,7 +207,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $('#networkTable').DataTable({
+            $('#blogTable').DataTable({
                 "paging": true,
                 'processing': true,
                 "lengthChange": true,
@@ -185,5 +225,28 @@
                 // }]
             });
         });
+
+        function deleteBlog(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: false,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-' + id).submit();
+                } else if (
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your data is safe !',
+                        'error'
+                    )
+                }
+            })
+        }
     </script>
 @endpush

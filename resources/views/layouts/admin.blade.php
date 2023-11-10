@@ -29,9 +29,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="{{ asset('favicons//ms-icon-144x144.png') }}">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#000000">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/FontAwesome/6.2.1/css/all.min.css') }}">
@@ -128,7 +128,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header mt-3">MENU</li>
+                        <li class="nav-header mt-3">OFFICE</li>
                         <li class="nav-item">
                             <a href="{{ route('employee.index') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-id-card"></i>
@@ -137,11 +137,36 @@
                                 </p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-users-viewfinder"></i>
+                                <p>
+                                    Department
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-regular fa-paste"></i>
                                 <p>
-                                    Transaction
+                                    Finance
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header mt-3">MANAGEMENT</li>
+                        <li class="nav-item">
+                            <a href="{{ route('project.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clipboard-check"></i>
+                                <p>
+                                    Project
+                                </p>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-clipboard-list"></i>
+                                <p>
+                                    Notulen
                                 </p>
                             </a>
                         </li> --}}
@@ -175,40 +200,6 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('project.index') }}" class="nav-link">
-                                <i class="nav-icon fa-solid fa-clipboard-check"></i>
-                                <p>
-                                    Project
-                                </p>
-                            </a>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-clipboard-list"></i>
-                                <p>
-                                    Notulen
-                                </p>
-                            </a>
-                        </li> --}}
-                        <li class="nav-header mt-3">MEMBERSHIP</li>
-                        <li class="nav-item">
-                            <a href="{{ route('agent.index') }}" class="nav-link">
-                                <i class="nav-icon fa-solid fa-id-card"></i>
-                                <p>
-                                    Agent
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('network.index') }}" class="nav-link">
-                                <i class="nav-icon fa-solid fa-network-wired"></i>
-                                <p>
-                                    Network
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-header mt-3">LANDING PAGE</li>
-                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-pencil"></i>
                                 <p>
@@ -236,6 +227,23 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-header mt-3">MEMBERSHIP</li>
+                        <li class="nav-item">
+                            <a href="{{ route('agent.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-id-card"></i>
+                                <p>
+                                    Agent
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('network.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-network-wired"></i>
+                                <p>
+                                    Network
+                                </p>
+                            </a>
                         </li>
                         <hr>
                     </ul>
@@ -308,7 +316,7 @@
     <script>
         const Toast = Swal.mixin({
             toast: true,
-            position: 'top-right',
+            position: 'top',
             iconColor: 'white',
             customClass: {
                 popup: 'colored-toast'

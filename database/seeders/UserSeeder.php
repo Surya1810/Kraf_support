@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Super Admin',
-            'username' => 'Super Admin',
+            'username' => 'Admin',
             'email' => 'hi@madebykraf.com',
             'password' => bcrypt('123'),
             'level' => '1'
@@ -78,7 +78,7 @@ class UserSeeder extends Seeder
             'position_id' => '1',
             'department_id' => '1',
             'name' => 'Muhammad Ilham',
-            'username' => 'Ilham',
+            'username' => 'Muhammad Ilham',
             'email' => 'ilham@madebykraf.com',
             'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
@@ -120,6 +120,26 @@ class UserSeeder extends Seeder
             'name' => 'Aris Resmono',
             'username' => 'Aris',
             'email' => 'aris@madebykraf.com',
+            'password' => bcrypt('Zainulland#2023'),
+            'level' => '1'
+        ]);
+        $admin = User::create([
+            'role_id' => '1',
+            'position_id' => '1',
+            'department_id' => '1',
+            'name' => 'Ilham Abdullah Faqih',
+            'username' => 'Ilham Abdullah',
+            'email' => 'ilhamabdullah@madebykraf.com',
+            'password' => bcrypt('Zainulland#2023'),
+            'level' => '1'
+        ]);
+        $admin = User::create([
+            'role_id' => '1',
+            'position_id' => '1',
+            'department_id' => '1',
+            'name' => 'Nur Andini Rahma',
+            'username' => 'Andin',
+            'email' => 'andin@madebykraf.com',
             'password' => bcrypt('Zainulland#2023'),
             'level' => '1'
         ]);

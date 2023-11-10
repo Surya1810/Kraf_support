@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     // User | Employee
     Route::resource('employee', UserController::class);
+    // Department
+    Route::resource('department', DepartmentController::class);
 
     // Profile Section
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -68,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
     //Blog
     Route::resource('blog', BlogController::class);
+    Route::get('/blog/status/{id}', [BlogController::class, 'status'])->name('blog.status');
 });
 
 Auth::routes();

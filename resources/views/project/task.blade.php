@@ -94,7 +94,7 @@
                                                     <td>{{ $task->desc }}</td>
                                                     <td class="text-center text-sm"><a href="{{ $task->attachment }}"
                                                             target="_blank"
-                                                            class="link-kraf"><strong><u>{{ $task->attachment }}</u></strong></a>
+                                                            class="link-kraf"><strong><u>Attachment</u></strong></a>
                                                     </td>
                                                     <td class="text-center">
                                                         @if ($task->status == 'Done')
@@ -265,6 +265,7 @@
                     </div>
                     <form action="{{ route('task.update', $task->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="title" class="mb-0 form-label col-form-label-sm">Title</label>

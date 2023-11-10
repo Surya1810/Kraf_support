@@ -62,17 +62,30 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit()
     {
-        //
+        //  
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'bail|required',
+            'desc' => 'bail|required',
+            'attachment' => 'bail|required',
+        ]);
+
+        $project = Task::find($id);
+        $project->title = $request->title;
+        $project->desc = $request->desc;
+        $project->attachment = $request->attachment;
+        $project->by = Auth::user()->username;
+        $project->update();
+
+        return redirect()->back()->with(['pesan' => 'Task updated successfully', 'level-alert' => 'alert-warning']);
     }
 
     /**
@@ -94,12 +107,12 @@ class TaskController extends Controller
             $task->by = Auth::user()->username;
             $task->status = 'Undone';
             $task->update();
+            return redirect()->back()->with(['pesan' => 'Task undone', 'level-alert' => 'alert-danger']);
         } else {
             $task->by = Auth::user()->username;
             $task->status = 'Done';
             $task->update();
+            return redirect()->back()->with(['pesan' => 'Task done', 'level-alert' => 'alert-success']);
         }
-
-        return redirect()->back()->with(['pesan' => 'Task updated successfully', 'level-alert' => 'alert-warning']);
     }
 }
