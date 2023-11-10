@@ -15,6 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Favicons -->
+    <link rel="apple-touch-icon" href="{{ asset('favicons/icon-512x512.png') }}">
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicons/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('favicons/apple-icon-72x72.png') }}">
@@ -28,9 +29,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
+
+    <!-- PWA  -->
     <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
     <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="{{ asset('favicons//ms-icon-144x144.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('favicons/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#000000">
 
     <!-- Font Awesome Icons -->
@@ -292,6 +295,24 @@
 
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/adminLTE/dist/js/adminlte.min.js') }}"></script>
+
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+    </script>
 
     <script>
         /*** add active class and stay opened when selected ***/
