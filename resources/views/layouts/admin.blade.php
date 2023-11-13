@@ -14,8 +14,20 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Favicons -->
+    {{-- <!-- PWA  -->
     <link rel="apple-touch-icon" href="{{ asset('favicons/icon-512x512.png') }}">
+    <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
+
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="{{ asset('favicons/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#000000"> --}}
+
+    <!-- PWA  -->
+    <meta name="theme-color" content="#000000" />
+    <link rel="apple-touch-icon" href="{{ asset('favicons/icon-512x512.png') }}">
+    <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
+
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicons/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('favicons/apple-icon-72x72.png') }}">
@@ -29,12 +41,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
-
-    <!-- PWA  -->
-    <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="{{ asset('favicons/ms-icon-144x144.png') }}">
-    <meta name="theme-color" content="#000000">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/FontAwesome/6.2.1/css/all.min.css') }}">
@@ -67,7 +73,7 @@
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown user-menu">
+                {{-- <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('assets/img/profile/' . Auth::user()->avatar) }}"
                             class="user-image img-circle elevation-2" alt="User Image">
@@ -95,7 +101,7 @@
                             </form>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </nav>
 
@@ -111,6 +117,16 @@
 
             <!-- Sidebar -->
             <div class="sidebar text-sm">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="{{ asset('assets/img/profile/' . Auth::user()->avatar) }}"
+                            class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="{{ route('profile.edit') }}" class="d-block">{{ Auth::user()->name }}</a>
+                    </div>
+                </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-3">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-legacy nav-child-indent nav-collapse-hide-child"
@@ -165,14 +181,14 @@
                                 </p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-clipboard-list"></i>
                                 <p>
                                     Notulen
                                 </p>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-boxes-packing"></i>
