@@ -103,7 +103,7 @@
                                         <th style="width: 10%">
                                             Tags
                                         </th>
-                                        <th style="width: 15%">
+                                        <th style="width: 10%">
                                             Created by
                                         </th>
                                         <th style="width: 5%">
@@ -115,8 +115,10 @@
                                 <tbody>
                                     @foreach ($blogs as $data)
                                         <tr>
-                                            <td>
-                                                {{ $data->title }}
+                                            <td class="text-center">
+                                                <img class="img-fluid" style="height: 50px"
+                                                    src="{{ asset('storage/post/' . $data->image) }}"
+                                                    alt="{{ $data->title }}">
                                             </td>
                                             <td>
                                                 {{ $data->title }}
@@ -145,10 +147,12 @@
                                             </td>
                                             <td class="text-center">
                                                 @if (auth()->user()->id == 1 || auth()->user()->id == 9)
-                                                    <a class="btn btn-sm btn-success rounded-kraf"
-                                                        href="{{ route('blog.status', $data->id) }}">
-                                                        <i class="fas fa-check"></i>
-                                                    </a>
+                                                    @if ($data->status == false)
+                                                        <a class="btn btn-sm btn-success rounded-kraf"
+                                                            href="{{ route('blog.status', $data->id) }}">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                    @endif
                                                     <a class="btn btn-sm btn-warning rounded-kraf"
                                                         href="{{ route('blog.edit', $data->id) }}">
                                                         <i class="fas fa-pencil-alt"></i>
