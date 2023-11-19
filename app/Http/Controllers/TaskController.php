@@ -74,7 +74,6 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'bail|required',
             'desc' => 'bail|required',
-            'attachment' => 'bail|required',
         ]);
 
         $project = Task::find($id);
