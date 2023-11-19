@@ -92,9 +92,12 @@
                                                     <td class="text-center">{{ $key + 1 }}</td>
                                                     <td>{{ $task->title }}</td>
                                                     <td>{{ $task->desc }}</td>
-                                                    <td class="text-center text-sm"><a href="{{ $task->attachment }}"
-                                                            target="_blank"
-                                                            class="link-kraf"><strong><u>Attachment</u></strong></a>
+                                                    <td class="text-center text-sm">
+                                                        @if ($task->attachment == null)
+                                                        @else
+                                                            <a href="{{ $task->attachment }}" target="_blank"
+                                                                class="link-kraf"><strong><u>Attachment</u></strong></a>
+                                                        @endif
                                                     </td>
                                                     <td class="text-center">
                                                         @if ($task->status == 'Done')
