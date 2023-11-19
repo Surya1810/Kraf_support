@@ -61,8 +61,20 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
+                                            <label for="desc">Description</label>
+                                            <textarea class=" form-control @error('desc') is-invalid @enderror" rows="4"
+                                                placeholder="Enter content description..." id="desc" name="desc">{{ old('desc') }}</textarea>
+                                            @error('desc')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
                                             <label for="body">Content</label>
-                                            <textarea class=" form-control @error('body') is-invalid @enderror" rows="4" placeholder="Enter creative brief..."
+                                            <textarea class=" form-control @error('body') is-invalid @enderror" rows="4" placeholder="Enter content..."
                                                 id="body" name="body">{{ old('body') }}</textarea>
                                             @error('body')
                                                 <span class="invalid-feedback" role="alert">
@@ -147,6 +159,7 @@
                                                 <label class="custom-file-label" for="thumbnail">Choose
                                                     file</label>
                                             </div>
+                                            <small class="text-danger">*Thumbnail ratio 16:9</small>
                                         </div>
                                     </div>
                                 </div>

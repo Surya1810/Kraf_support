@@ -44,6 +44,7 @@ class BlogController extends Controller
             'categories' => 'required',
             'tags' => 'required',
             'body' => 'required',
+            'desc' => 'required',
         ]);
         $image = $request->file('thumbnail');
         $slug = Str::slug($request->title);
@@ -68,8 +69,9 @@ class BlogController extends Controller
         $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->slug = $slug;
-        $post->image = $imageName;
+        $post->image = $imageName . '.webp';
         $post->body = $request->body;
+        $post->desc = $request->desc;
         $post->category = $request->categories;
         $post->tag = implode(',', $request->tags);;
         $post->save();

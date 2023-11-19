@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('image')->default('default.png');
             $table->text('body');
+            $table->text('desc');
             $table->integer('view_count')->default(0);
             $table->boolean('status')->default(false);
             $table->bigInteger('user_id')->constrained()->cascadeOnDelete();
