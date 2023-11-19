@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('project_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->longText('desc');
-            $table->string('attachment');
+            $table->string('attachment')->nullable();
             $table->string('status')->default('Undone');
             $table->string('by');
             $table->integer('order');

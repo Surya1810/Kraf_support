@@ -198,7 +198,8 @@
                                     </span>
                                 @enderror
                             </div>
-                            <label for="attachment" class="mb-0 form-label col-form-label-sm">Attachment</label>
+                            <label for="attachment" class="mb-0 form-label col-form-label-sm">Attachment <small
+                                    class="text-danger">*Opsional</small></label>
                             <input type="text" class="form-control @error('attachment') is-invalid @enderror"
                                 id="attachment" name="attachment" placeholder="Enter step attachment"
                                 value="{{ old('attachment') }}">
