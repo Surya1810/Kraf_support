@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
 
     // Project Management
     Route::resource('project', ProjectController::class);
+    // Route::get('/project/archive', [ProjectController::class, 'archive'])->name('project.archive');
     Route::get('/project/detail/{kode}', [ProjectController::class, 'detail'])->name('project.detail');
     Route::get('/project/task/{kode}', [ProjectController::class, 'task'])->name('project.task');
     Route::get('/project/review/{kode}', [ProjectController::class, 'review'])->name('project.review');

@@ -152,7 +152,7 @@
                                 </button>
                             @endif
 
-                            @if (auth()->user()->id == 1 || auth()->user()->id == 9)
+                            @if (auth()->user()->id == 1 || auth()->user()->id == 9 || auth()->user()->id == 3)
                                 <button type="button" class="btn btn-success rounded-kraf float-right"
                                     data-toggle="modal" data-target="#finishModal">
                                     <i class="fas fa-check"></i>

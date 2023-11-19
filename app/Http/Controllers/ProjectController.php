@@ -23,17 +23,18 @@ class ProjectController extends Controller
         return view('project.index', compact('projects', 'today'));
     }
 
+    public function archive()
+    {
+        return view('project.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            $users = User::where('id', '!=', '1')->get();
-            return view('project.create', compact('users'));
-        } else {
-            abort(404);
-        }
+        $users = User::where('id', '!=', '1')->get();
+        return view('project.create', compact('users'));
     }
 
     /**
@@ -41,38 +42,34 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            $request->validate([
-                'name' => 'bail|required',
-                'client' => 'bail|required',
-                'creative_brief' => 'bail|required',
-                'pic' => 'bail|required',
-                'assisten' => 'bail|required',
-                'status' => 'bail|required',
-                'urgency' => 'bail|required',
-                'deadline' => 'bail|required',
-                'start' => 'bail|required',
-            ]);
+        $request->validate([
+            'name' => 'bail|required',
+            'client' => 'bail|required',
+            'creative_brief' => 'bail|required',
+            'pic' => 'bail|required',
+            'assisten' => 'bail|required',
+            'status' => 'bail|required',
+            'urgency' => 'bail|required',
+            'deadline' => 'bail|required',
+            'start' => 'bail|required',
+        ]);
 
-            $old = session()->getOldInput();
+        $old = session()->getOldInput();
 
-            $project = new Project();
-            $project->name = $request->name;
-            $project->client = $request->client;
-            $project->kode = (Str::random(5));
-            $project->creative_brief = $request->creative_brief;
-            $project->pic = $request->pic;
-            $project->status = $request->status;
-            $project->urgency = $request->urgency;
-            $project->deadline = $request->deadline;
-            $project->start = $request->start;
-            $project->assisten = implode(',', $request->assisten);
-            $project->save();
+        $project = new Project();
+        $project->name = $request->name;
+        $project->client = $request->client;
+        $project->kode = (Str::random(5));
+        $project->creative_brief = $request->creative_brief;
+        $project->pic = $request->pic;
+        $project->status = $request->status;
+        $project->urgency = $request->urgency;
+        $project->deadline = $request->deadline;
+        $project->start = $request->start;
+        $project->assisten = implode(',', $request->assisten);
+        $project->save();
 
-            return redirect()->route('project.index')->with(['pesan' => 'Project created successfully', 'level-alert' => 'alert-success']);
-        } else {
-            abort(404);
-        }
+        return redirect()->route('project.index')->with(['pesan' => 'Project created successfully', 'level-alert' => 'alert-success']);
     }
 
     /**
@@ -88,14 +85,10 @@ class ProjectController extends Controller
      */
     public function edit($kode)
     {
-        if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            $project = Project::where('kode', $kode)->first();
-            $users = User::where('id', '!=', '1')->get();
+        $project = Project::where('kode', $kode)->first();
+        $users = User::where('id', '!=', '1')->get();
 
-            return view('project.edit', compact('project', 'users'));
-        } else {
-            abort(404);
-        }
+        return view('project.edit', compact('project', 'users'));
     }
 
     /**
@@ -103,35 +96,31 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            $request->validate([
-                'name' => 'bail|required',
-                'client' => 'bail|required',
-                'creative_brief' => 'bail|required',
-                'pic' => 'bail|required',
-                'assisten' => 'bail|required',
-                'status' => 'bail|required',
-                'urgency' => 'bail|required',
-                'deadline' => 'bail|required',
-                'start' => 'bail|required',
-            ]);
+        $request->validate([
+            'name' => 'bail|required',
+            'client' => 'bail|required',
+            'creative_brief' => 'bail|required',
+            'pic' => 'bail|required',
+            'assisten' => 'bail|required',
+            'status' => 'bail|required',
+            'urgency' => 'bail|required',
+            'deadline' => 'bail|required',
+            'start' => 'bail|required',
+        ]);
 
-            $project = Project::find($id);
-            $project->name = $request->name;
-            $project->client = $request->client;
-            $project->creative_brief = $request->creative_brief;
-            $project->pic = $request->pic;
-            $project->status = $request->status;
-            $project->urgency = $request->urgency;
-            $project->deadline = $request->deadline;
-            $project->start = $request->start;
-            $project->assisten = implode(',', $request->assisten);
-            $project->update();
+        $project = Project::find($id);
+        $project->name = $request->name;
+        $project->client = $request->client;
+        $project->creative_brief = $request->creative_brief;
+        $project->pic = $request->pic;
+        $project->status = $request->status;
+        $project->urgency = $request->urgency;
+        $project->deadline = $request->deadline;
+        $project->start = $request->start;
+        $project->assisten = implode(',', $request->assisten);
+        $project->update();
 
-            return redirect()->route('project.index')->with(['pesan' => 'Project updated successfully', 'level-alert' => 'alert-warning']);
-        } else {
-            abort(404);
-        }
+        return redirect()->route('project.index')->with(['pesan' => 'Project updated successfully', 'level-alert' => 'alert-warning']);
     }
 
     /**
@@ -139,15 +128,11 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            $project = Project::find($id);
+        $project = Project::find($id);
 
-            $project->delete();
+        $project->delete();
 
-            return redirect()->route('project.index')->with(['pesan' => 'Project deleted successfully', 'level-alert' => 'alert-danger']);
-        } else {
-            abort(404);
-        }
+        return redirect()->route('project.index')->with(['pesan' => 'Project deleted successfully', 'level-alert' => 'alert-danger']);
     }
 
     public function detail($kode)
@@ -197,19 +182,15 @@ class ProjectController extends Controller
 
     public function done(Request $request, $id)
     {
-        if (Auth::user()->id == '1' || Auth::user()->id == '9') {
-            $request->validate([
-                'review' => 'bail|required',
-            ]);
-            $project = Project::find($id);
+        $request->validate([
+            'review' => 'bail|required',
+        ]);
+        $project = Project::find($id);
 
-            $project->status = 'Finished';
-            $project->review = $request->review;
-            $project->save();
+        $project->status = 'Finished';
+        $project->review = $request->review;
+        $project->save();
 
-            return redirect()->route('project.index')->with(['pesan' => 'Project Finished', 'level-alert' => 'alert-success']);
-        } else {
-            abort(404);
-        }
+        return redirect()->route('project.index')->with(['pesan' => 'Project Finished', 'level-alert' => 'alert-success']);
     }
 }
