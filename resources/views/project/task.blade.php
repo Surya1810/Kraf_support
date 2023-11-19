@@ -295,7 +295,7 @@
                                 <label for="attachment" class="mb-0 form-label col-form-label-sm">Attachment</label>
                                 <input type="text" class="form-control @error('attachment') is-invalid @enderror"
                                     id="attachment" name="attachment" placeholder="Enter step attachment"
-                                    value="{{ $task->attachment }}<">
+                                    value="{{ $task->attachment }}">
                                 @error('attachment')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
