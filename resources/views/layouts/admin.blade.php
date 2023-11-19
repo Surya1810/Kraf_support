@@ -102,17 +102,44 @@
                         </li>
                     </ul>
                 </li> --}}
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        {{-- <span class="badge badge-warning navbar-badge">15</span> --}}
+                    </a>
+                    {{-- <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div> --}}
+                </li>
             </ul>
         </nav>
 
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar main-sidebar-custom sidebar-dark-orange elevation-4 bg-dark">
             <!-- Brand Logo -->
-            <a href="{{ route('dashboard') }}" class="brand-link logo-switch border-0 shadow-bottom ">
+            <a href="{{ route('dashboard') }}" class="brand-link logo-switch border-0 shadow-bottom">
                 <img src="{{ asset('assets/logo/kraf-ico.png') }}" alt="Kraf_logo"
                     class="brand-image-xl logo-xs text-sm">
                 <img src="{{ asset('assets/logo/logo-light.png') }}" alt="Kraf_logo"
-                    class="brand-image-xs logo-xl text-sm" style="left: 14px">
+                    class="brand-image-xs logo-xl text-sm" style="left: 14px;">
             </a>
 
             <!-- Sidebar -->
@@ -156,14 +183,14 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-users-viewfinder"></i>
                                 <p>
                                     Department
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-regular fa-paste"></i>
@@ -247,7 +274,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-header mt-3">MEMBERSHIP</li>
+                        {{-- <li class="nav-header mt-3">MEMBERSHIP</li>
                         <li class="nav-item">
                             <a href="{{ route('agent.index') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-id-card"></i>
@@ -263,15 +290,24 @@
                                     Network
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <hr>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <div class="sidebar-custom border-dark">
-                <a href="{{ route('profile.edit') }}" class="btn btn-link link-kraf"><i
-                        class="nav-icon fa-solid fa-gear"></i></a>
+                {{-- <a href="{{ route('profile.edit') }}" class="btn btn-link link-kraf"><i
+                        class="nav-icon fa-solid fa-gear"></i></a> --}}
+                <a class="btn btn-danger rounded-kraf" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fa-solid fa-power-off"></i>
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+                <button class="btn btn-dark hide-on-collapse pos-right" id="install" hidden>Install</button>
             </div>
             <!-- /.sidebar -->
         </aside>
@@ -327,6 +363,40 @@
             );
         } else {
             console.error("Service workers are not supported.");
+        }
+    </script>
+
+    <script>
+        let installPrompt = null;
+        const installButton = document.querySelector("#install");
+
+        window.addEventListener("beforeinstallprompt", (event) => {
+            event.preventDefault();
+            installPrompt = event;
+            installButton.removeAttribute("hidden");
+        });
+
+        installButton.addEventListener("click", async () => {
+            if (!installPrompt) {
+                return;
+            }
+            const result = await installPrompt.prompt();
+            console.log(`Install prompt was: ${result.outcome}`);
+            disableInAppInstallPrompt();
+        });
+
+        function disableInAppInstallPrompt() {
+            installPrompt = null;
+            installButton.setAttribute("hidden", "");
+        }
+
+        window.addEventListener("appinstalled", () => {
+            disableInAppInstallPrompt();
+        });
+
+        function disableInAppInstallPrompt() {
+            installPrompt = null;
+            installButton.setAttribute("hidden", "");
         }
     </script>
 

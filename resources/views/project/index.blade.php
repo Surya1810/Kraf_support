@@ -52,9 +52,9 @@
                             <table id="projectTable" class="table table-bordered text-nowrap">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 5%">
+                                        {{-- <th style="width: 5%">
                                             Code
-                                        </th>
+                                        </th> --}}
                                         <th style="width: 50%">
                                             Project Name
                                         </th>
@@ -73,13 +73,13 @@
                                         <th style="width: 5">
                                             Urgency
                                         </th>
-                                        <th style="width: 10%">Action</th>
+                                        <th style="width: 15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($projects as $project)
                                         <tr>
-                                            <td>{{ $project->kode }}</td>
+                                            {{-- <td>{{ $project->kode }}</td> --}}
                                             <td class="text-wrap">{{ $project->name }}
                                                 @if ($project->deadline->isPast())
                                                     <span class="badge badge-danger">
@@ -125,15 +125,15 @@
                                                 <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
                                             @endif
                                             <td class="text-center">
-                                                @if ($project->status === 'Finished')
+                                                @if ($project->status == 'Finished')
                                                     <span class="badge badge-success">
                                                         {{ $project->status }}
                                                     </span>
-                                                @elseif ($project->status === 'On Going')
+                                                @elseif ($project->status == 'On Going')
                                                     <span class="badge badge-info">
                                                         {{ $project->status }}
                                                     </span>
-                                                @elseif ($project->status === 'Planning')
+                                                @elseif ($project->status == 'Planning')
                                                     <span class="badge badge-warning">
                                                         {{ $project->status }}
                                                     </span>
@@ -144,11 +144,11 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if ($project->urgency === 'High')
+                                                @if ($project->urgency == 'High')
                                                     <span class="badge badge-danger">
                                                         {{ $project->urgency }}
                                                     </span>
-                                                @elseif ($project->urgency === 'Medium')
+                                                @elseif ($project->urgency == 'Medium')
                                                     <span class="badge badge-orange">
                                                         {{ $project->urgency }}
                                                     </span>

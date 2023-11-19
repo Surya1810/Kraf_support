@@ -60,9 +60,9 @@
                                         <th>
                                             Status
                                         </th>
-                                        <th>
+                                        {{-- <th>
                                             Department
-                                        </th>
+                                        </th> --}}
                                         <th>
                                             Action
                                         </th>
@@ -75,20 +75,20 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
-                                                @if ($user->sign === null)
+                                                @if ($user->sign == null)
                                                     <span class="badge badge-dark">None</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($user->is_active === 1)
+                                                @if ($user->is_active == 1)
                                                     Active
                                                 @else
                                                     Disabled
                                                 @endif
                                             </td>
-                                            <td>
+                                            {{-- <td>
 
-                                            </td>
+                                            </td> --}}
                                             <td>
 
                                             </td>

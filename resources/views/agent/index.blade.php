@@ -72,12 +72,12 @@
                                             <td>{{ $agent->name }}</td>
                                             <td>{{ $agent->email }}</td>
                                             <td>
-                                                @if ($agent->sign === null)
+                                                @if ($agent->sign == null)
                                                     <span class="badge badge-dark">None</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($agent->is_active === 1)
+                                                @if ($agent->is_active == 1)
                                                     Active
                                                 @else
                                                     Disabled

@@ -31,8 +31,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-3">
+            {{-- <div class="row">
+                <div class="col-6 col-lg-3">
                     <div class="small-box bg-kraf">
                         <div class="inner">
                             <h3>{{ $blogs->count() }}</h3>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-lg-3">
                     <div class="small-box bg-kraf">
                         <div class="inner">
                             <h3>{{ $unpublished }}</h3>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-lg-3">
                     <div class="small-box bg-kraf">
                         <div class="inner">
                             <h3>{{ $published }}</h3>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6 col-lg-3">
                     <div class="small-box bg-kraf">
                         <div class="inner">
                             <h3>{{ $month }}</h3>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-12">
                     <div class="card card-outline rounded-kraf card-orange">
