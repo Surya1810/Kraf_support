@@ -37,13 +37,11 @@
                                         href="{{ route('project.detail', $project->kode) }}" role="tab"
                                         aria-controls="tabs_project" aria-selected="false">Overview</a>
                                 </li>
-                                @if ($project->status != 'Finished')
-                                    <li class="nav-item">
-                                        <a class="nav-link link-kraf" id="tabs_task"
-                                            href="{{ route('project.task', $project->kode) }}" role="tab"
-                                            aria-controls="tabs_task" aria-selected="false">Task Step</a>
-                                    </li>
-                                @endif
+                                <li class="nav-item">
+                                    <a class="nav-link link-kraf" id="tabs_task"
+                                        href="{{ route('project.task', $project->kode) }}" role="tab"
+                                        aria-controls="tabs_task" aria-selected="false">Task Step</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link link-kraf active" id="tabs_review"
                                         href="{{ route('project.review', $project->kode) }}" role="tab"

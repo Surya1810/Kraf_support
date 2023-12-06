@@ -148,19 +148,21 @@
                             </div>
                         </div>
                         <div class="card-footer rounded-kraf">
-                            @if (in_array(auth()->user()->id, $access->toArray()))
-                                <button type="button" class="btn btn-kraf rounded-kraf" data-toggle="modal"
-                                    data-target="#addStepModal">
-                                    Add Step
-                                </button>
-                            @endif
+                            @if ($project->status != 'Finished')
+                                @if (in_array(auth()->user()->id, $access->toArray()))
+                                    <button type="button" class="btn btn-kraf rounded-kraf" data-toggle="modal"
+                                        data-target="#addStepModal">
+                                        Add Step
+                                    </button>
+                                @endif
 
-                            @if (auth()->user()->id == 1 || auth()->user()->id == 9 || auth()->user()->id == 3)
-                                <button type="button" class="btn btn-success rounded-kraf float-right"
-                                    data-toggle="modal" data-target="#finishModal">
-                                    <i class="fas fa-check"></i>
-                                    Finish Project
-                                </button>
+                                @if (auth()->user()->id == 1 || auth()->user()->id == 9 || auth()->user()->id == 3)
+                                    <button type="button" class="btn btn-success rounded-kraf float-right"
+                                        data-toggle="modal" data-target="#finishModal">
+                                        <i class="fas fa-check"></i>
+                                        Finish Project
+                                    </button>
+                                @endif
                             @endif
                         </div>
                     </div>

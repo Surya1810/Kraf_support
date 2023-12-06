@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/project/task/{kode}', [ProjectController::class, 'task'])->name('project.task');
     Route::get('/project/review/{kode}', [ProjectController::class, 'review'])->name('project.review');
     Route::post('/project/done/{id}', [ProjectController::class, 'done'])->name('project.done');
+    Route::post('/project/restore/{id}', [ProjectController::class, 'undone'])->name('project.undone');
     Route::get('/archive', [ProjectController::class, 'archive'])->name('project.archive');
 
     // Notulen

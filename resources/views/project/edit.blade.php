@@ -156,9 +156,9 @@
                                             <option value="On Going"
                                                 {{ $project->status == 'On Going' ? 'selected' : '' }}>On
                                                 Going</option>
-                                            <option value="Finished"
+                                            {{-- <option value="Finished"
                                                 {{ $project->status == 'Finished' ? 'selected' : '' }}>
-                                                Finished</option>
+                                                Finished</option> --}}
                                         </select>
                                         @error('status')
                                             <span class="invalid-feedback" role="alert">

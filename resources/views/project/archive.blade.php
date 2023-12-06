@@ -47,7 +47,7 @@
                             <table id="projectTable" class="table table-bordered text-nowrap">
                                 <thead class="table-dark">
                                     <tr>
-                                        <th style="width: 70%">
+                                        <th style="width: 55%">
                                             Project Name
                                         </th>
                                         <th style="width: 15%">
@@ -56,7 +56,7 @@
                                         <th style="width: 15%">
                                             Due Date
                                         </th>
-                                        {{-- <th style="width: 15%">Action</th> --}}
+                                        <th style="width: 15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,35 +65,22 @@
                                             <td class="text-wrap">{{ $project->name }}</td>
                                             <td>{{ $project->start->toFormattedDateString('d/m/y') }}</td>
                                             <td>{{ $project->deadline->toFormattedDateString('d/m/y') }}</td>
-                                            {{-- <td class="text-center">
-                                                @if (auth()->user()->id == 1 || auth()->user()->id == 9 || auth()->user()->id == 3)
-                                                    <a class="btn btn-sm btn-info rounded-kraf"
-                                                        href="{{ route('project.detail', $project->kode) }}">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                    </a>
-                                                    @if ($project->status != 'Finished')
-                                                        <a class="btn btn-sm btn-success rounded-kraf"
-                                                            href="{{ route('project.edit', $project->kode) }}">
-                                                            <i class="fas fa-pencil-alt"></i>
-                                                        </a>
-                                                    @endif
-                                                    <button class="btn btn-sm btn-danger rounded-kraf"
-                                                        onclick="deleteProject({{ $project->id }})"><i
-                                                            class="fas fa-trash"></i></button>
-                                                    <form id="delete-form-{{ $project->id }}"
-                                                        action="{{ route('project.destroy', $project->id) }}"
-                                                        method="POST" style="display: none;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                @else
-                                                    <a class="btn btn-sm btn-info rounded-kraf"
-                                                        href="{{ route('project.detail', $project->kode) }}">
-                                                        <i class="fa-solid fa-eye"></i>
-                                                        View Project
-                                                    </a>
-                                                @endif
-                                            </td> --}}
+                                            <td class="text-center">
+                                                <a class="btn btn-sm btn-info rounded-kraf"
+                                                    href="{{ route('project.detail', $project->kode) }}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                    View
+                                                </a>
+                                                <button class="btn btn-sm btn-warning rounded-kraf"
+                                                    onclick="restoreProject({{ $project->id }})"><i
+                                                        class="fa-solid fa-circle-left"></i></i> Restore</button>
+                                                <form id="delete-form-{{ $project->id }}"
+                                                    action="{{ route('project.undone', $project->id) }}" method="POST"
+                                                    style="display: none;">
+                                                    @csrf
+                                                    @method('POST')
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -142,13 +129,13 @@
             });
         });
 
-        function deleteProject(id) {
+        function restoreProject(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 icon: 'warning',
                 showCancelButton: false,
                 confirmButtonColor: '#d33',
-                confirmButtonText: 'Delete'
+                confirmButtonText: 'Restore'
             }).then((result) => {
                 if (result.value) {
                     event.preventDefault();

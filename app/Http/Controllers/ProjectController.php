@@ -152,26 +152,22 @@ class ProjectController extends Controller
     {
         $project = Project::where('kode', $kode)->first();
 
-        if ($project->status != 'Finished') {
-            // find team
-            $asisten = explode(',', $project->assisten);
-            $team = User::whereIn('id', $asisten)->pluck('id');
-            // find pic
-            $pic = User::where('id', $project->pic)->pluck('id');
-            $pic_1 = explode(',', $pic);
-            // find admin
-            $admin = [1, 9];
+        // find team
+        $asisten = explode(',', $project->assisten);
+        $team = User::whereIn('id', $asisten)->pluck('id');
+        // find pic
+        $pic = User::where('id', $project->pic)->pluck('id');
+        $pic_1 = explode(',', $pic);
+        // find admin
+        $admin = [1, 9];
 
-            $access = $pic->merge($team)->merge($admin);
+        $access = $pic->merge($team)->merge($admin);
 
-            // Task
-            $tasks = $project->tasks;
-            // dd($tasks);
+        // Task
+        $tasks = $project->tasks;
+        // dd($tasks);
 
-            return view('project.task', compact('project', 'access', 'tasks'));
-        } else {
-            abort(404);
-        }
+        return view('project.task', compact('project', 'access', 'tasks'));
     }
 
     public function review($kode)
@@ -193,5 +189,14 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect()->route('project.index')->with(['pesan' => 'Project Finished', 'level-alert' => 'alert-success']);
+    }
+
+    public function undone(Request $request, $id)
+    {
+        $project = Project::find($id);
+        $project->status = 'Restored';
+        $project->update();
+
+        return redirect()->route('project.index')->with(['pesan' => 'Project Restored', 'level-alert' => 'alert-success']);
     }
 }
