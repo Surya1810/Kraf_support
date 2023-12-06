@@ -4,6 +4,7 @@ use App\Http\Controllers\AgentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\NetworkController;
+use App\Http\Controllers\NotulenController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -52,11 +53,14 @@ Route::middleware('auth')->group(function () {
 
     // Project Management
     Route::resource('project', ProjectController::class);
-    // Route::get('/project/archive', [ProjectController::class, 'archive'])->name('project.archive');
     Route::get('/project/detail/{kode}', [ProjectController::class, 'detail'])->name('project.detail');
     Route::get('/project/task/{kode}', [ProjectController::class, 'task'])->name('project.task');
     Route::get('/project/review/{kode}', [ProjectController::class, 'review'])->name('project.review');
     Route::post('/project/done/{id}', [ProjectController::class, 'done'])->name('project.done');
+    Route::get('/archive', [ProjectController::class, 'archive'])->name('project.archive');
+
+    // Notulen
+    Route::resource('notulen', NotulenController::class);
 
     //Task Management
     Route::resource('task', TaskController::class)->except([

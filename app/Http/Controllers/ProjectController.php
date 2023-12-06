@@ -25,7 +25,8 @@ class ProjectController extends Controller
 
     public function archive()
     {
-        return view('project.index');
+        $projects = Project::where('status', '=', 'Finished')->get();
+        return view('project.archive', compact('projects'));
     }
 
     /**

@@ -209,7 +209,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('notulen.index') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-clipboard-list"></i>
                                 <p>
                                     Notulen

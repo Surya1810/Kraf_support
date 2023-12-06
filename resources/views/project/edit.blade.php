@@ -10,7 +10,8 @@
     <script>
         tinymce.init({
             selector: 'textarea#creative_brief',
-            plugins: 'powerpaste advcode table lists checklist',
+            // plugins: 'powerpaste advcode table lists checklist',
+            plugins: 'table lists',
             toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table | alignleft aligncenter alignright alignjustify | outdent indent'
         });
     </script>
