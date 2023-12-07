@@ -81,8 +81,10 @@
                                                 <th style="width: 10%">
                                                     Info
                                                 </th>
-                                                @if (in_array(auth()->user()->id, $access->toArray()))
-                                                    <th style="width: 20%">Action</th>
+                                                @if ($project->status != 'Finished')
+                                                    @if (in_array(auth()->user()->id, $access->toArray()))
+                                                        <th style="width: 20%">Action</th>
+                                                    @endif
                                                 @endif
                                             </tr>
                                         </thead>
@@ -110,35 +112,37 @@
                                                         <a>{{ $task->by }}</a><br><small
                                                             class="text-muted">{{ $task->updated_at->toFormattedDateString('d/m/y') }}</small>
                                                     </td>
-                                                    @if (in_array(auth()->user()->id, $access->toArray()))
-                                                        <td class="text-center">
-                                                            @if ($task->status == 'Undone')
-                                                                <a href="{{ route('task.status', $task->id) }}"
-                                                                    class="btn btn-xs btn-success rounded-kraf text-sm">
-                                                                    Done
-                                                                </a>
-                                                            @else
-                                                                <a href="{{ route('task.status', $task->id) }}"
-                                                                    class="btn btn-xs btn-danger rounded-kraf text-sm">
-                                                                    Undone
-                                                                </a>
-                                                            @endif
-                                                            <button type="button"
-                                                                class="btn btn-sm btn-warning rounded-kraf"
-                                                                data-toggle="modal"
-                                                                data-target="#editStepModal{{ $task->id }}">
-                                                                <i class="fas fa-pencil-alt"></i>
-                                                            </button>
-                                                            <button class="btn btn-sm btn-danger rounded-kraf"
-                                                                onclick="deleteTask({{ $task->id }})"><i
-                                                                    class="fas fa-trash"></i></button>
-                                                            <form id="delete-form-{{ $task->id }}"
-                                                                action="{{ route('task.destroy', $task->id) }}"
-                                                                method="POST" style="display: none;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
-                                                        </td>
+                                                    @if ($project->status != 'Finished')
+                                                        @if (in_array(auth()->user()->id, $access->toArray()))
+                                                            <td class="text-center">
+                                                                @if ($task->status == 'Undone')
+                                                                    <a href="{{ route('task.status', $task->id) }}"
+                                                                        class="btn btn-xs btn-success rounded-kraf text-sm">
+                                                                        Done
+                                                                    </a>
+                                                                @else
+                                                                    <a href="{{ route('task.status', $task->id) }}"
+                                                                        class="btn btn-xs btn-danger rounded-kraf text-sm">
+                                                                        Undone
+                                                                    </a>
+                                                                @endif
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-warning rounded-kraf"
+                                                                    data-toggle="modal"
+                                                                    data-target="#editStepModal{{ $task->id }}">
+                                                                    <i class="fas fa-pencil-alt"></i>
+                                                                </button>
+                                                                <button class="btn btn-sm btn-danger rounded-kraf"
+                                                                    onclick="deleteTask({{ $task->id }})"><i
+                                                                        class="fas fa-trash"></i></button>
+                                                                <form id="delete-form-{{ $task->id }}"
+                                                                    action="{{ route('task.destroy', $task->id) }}"
+                                                                    method="POST" style="display: none;">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                </form>
+                                                            </td>
+                                                        @endif
                                                     @endif
                                                 </tr>
                                             @endforeach
@@ -147,8 +151,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer rounded-kraf">
-                            @if ($project->status != 'Finished')
+                        @if ($project->status != 'Finished')
+                            <div class="card-footer rounded-kraf">
                                 @if (in_array(auth()->user()->id, $access->toArray()))
                                     <button type="button" class="btn btn-kraf rounded-kraf" data-toggle="modal"
                                         data-target="#addStepModal">
@@ -163,8 +167,8 @@
                                         Finish Project
                                     </button>
                                 @endif
-                            @endif
-                        </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
