@@ -107,7 +107,7 @@
                                                 </div>
                                                 <small>
                                                     @if ($progress != null)
-                                                        {{ number_format($progress, 1, ',', '') }}
+                                                        {{ number_format($progress, 1, ',', '') }}%
                                                     @else
                                                         No Progress
                                                     @endif
